@@ -1,0 +1,227 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Dhaneswara Triweko</title>
+<meta name="description" content="Decision scientist. Causal inference, discrete choice modelling, credit risk and mobility. CV of Dhaneswara Mandrasa Triweko.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column, a to-scale career timeline as the only graphic, mono for dates and numbers. */
+:root {
+  --bg: #f4f4f1; --surface: #ffffff; --fg: #1a1a1a; --ink2: #3d3d3d; --muted: #666666; --rule: #a6a6a0; --line: #dcdcd6;
+  --accent: #3b3fb6; --deep: #2a2d8a; --accent-soft: #ececf8; --bar: #888888;
+  --display: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+    --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+  --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; margin: 0; }
+main { max-width: 860px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 60px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+.cover { background: #3b3fb6; color: #fff; margin-inline: -16px; padding: 64px 16px 48px; }
+.cover .in { max-width: 860px; margin: 0 auto; }
+.kick { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9cbf0; }
+.cover .contact, .cover .contact a, .cover .contact button { color: #e4e5fa; }
+.cover .status { background: #fff; color: #2a2d8a; }
+.top h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7.5vw, 4.4rem); line-height: 1.0; letter-spacing: -0.02em; margin-top: 14px; text-wrap: balance; }
+.role { margin-top: 18px; font-size: 1.2rem; color: #fff; max-width: 34em; text-wrap: pretty; }
+.contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.contact span, .contact a { min-width: 0; overflow-wrap: anywhere; }
+.contact button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.status { display: inline-block; margin-top: 18px; padding: 5px 12px; border-radius: 999px; font-weight: 500; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 0.78rem; }
+h2 { font-family: var(--body); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+.summary p { max-width: 44em; text-wrap: pretty; }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px 28px; }
+.res { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 2.5px solid var(--rule); padding-top: 14px; }
+.num { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 2.6rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.cap { font-size: 0.95rem; color: var(--ink2); }
+.chart { overflow-x: auto; }
+.chart svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font: 500 10px var(--mono); }
+.chart .lab { fill: var(--fg); font: 400 12px var(--body); }
+.chart .bar.work { fill: var(--bar); }
+.chart .bar.study { fill: var(--accent); }
+.chart .now { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.legend { margin-top: 10px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.job + .job { margin-top: 34px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.job h3 { font-size: 1.2rem; font-weight: 700; }
+.dates { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.org { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+.job ul, .thesis ul { color: var(--ink2); }
+.job ul { margin-top: 10px; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; max-width: 46em; }
+.job li::marker { color: var(--accent); }
+.thesis ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; max-width: 46em; }
+.thesis li::marker { color: var(--accent); }
+.thesis .lede { max-width: 44em; margin-bottom: 26px; text-wrap: pretty; }
+.thesis h3 { font-size: 1.1rem; font-weight: 600; }
+.thesis .where { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.edu { display: flex; flex-direction: column; gap: 18px; }
+.edu-row { display: flex; justify-content: space-between; gap: 4px 20px; flex-wrap: wrap; }
+.edu-row strong { font-weight: 600; }
+.edu-row .sub { color: var(--ink2); font-size: 0.95rem; display: block; }
+.edu-row .sub.small { color: var(--muted); font-size: 0.85rem; }
+dl.skills { display: flex; flex-direction: column; gap: 14px; }
+.sk { display: grid; grid-template-columns: 200px 1fr; gap: 2px 24px; }
+.sk dt { font-weight: 700; color: var(--deep); }
+.sk dd { color: var(--ink2); min-width: 0; }
+footer { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 600px) { .sk { grid-template-columns: 1fr; } body { padding-block: 32px 56px; } }
+@media print { body { padding: 0; } }
+</style>
+
+<header class="top cover"><div class="in">
+    <p class="kick">Decision science &middot; AI &middot; Mobility</p>
+    <h1>Dhaneswara Mandrasa Triweko</h1>
+    <p class="role">Decision scientist with 8+ years across telecom, banking, agriculture, geospatial and commerce. Now doing graduate research on causal inference and discrete choice modelling, looking for principal-track individual-contributor work in pricing, marketplace and policy decisions.</p>
+    <div class="contact">
+      <span>Higashihiroshima, Japan &middot; remote</span>
+      <span id="mail">dhaneswara.mandrasa@gmail.com</span>
+      <button type="button" id="copy" aria-label="Copy email address">copy email</button>
+      <a href="https://www.linkedin.com/in/dhaneswaramandrasa" target="_blank" rel="noopener">linkedin.com/in/dhaneswaramandrasa</a>
+      <a href="Dhaneswara_Triweko_CV.pdf">download PDF</a>
+    </div>
+    <span class="status">Open to remote roles worldwide</span>
+  </div></header>
+</head><body><main>
+
+  <section aria-labelledby="h-res">
+    <h2 id="h-res">Results</h2>
+    <div class="results"><div class="res"><span class="num">0.6</span><span class="cap">Gini on a telco credit score, the company's best</span></div><div class="res"><span class="num">100M+</span><span class="cap">daily active users segmented across five Asian operators</span></div><div class="res"><span class="num">+12%</span><span class="cap">cross-sell revenue from a bank recommendation engine</span></div><div class="res"><span class="num">5&rarr;70%</span><span class="cap">share of company revenue for the products I led</span></div></div>
+  </section>
+
+  <section aria-labelledby="h-time">
+    <h2 id="h-time">Timeline, to scale</h2>
+    <div class="chart" tabindex="0" aria-label="Scrollable career timeline"><svg viewBox="0 0 760 223" width="760" height="223" role="img" aria-label="Career timeline 2011 to 2028, drawn to scale" xmlns="http://www.w3.org/2000/svg">
+<line class="grid" x1="240.7" y1="20" x2="240.7" y2="217"/>
+<text class="tick" x="240.7" y="15" text-anchor="middle">2012</text>
+<line class="grid" x1="302.2" y1="20" x2="302.2" y2="217"/>
+<text class="tick" x="302.2" y="15" text-anchor="middle">2014</text>
+<line class="grid" x1="363.7" y1="20" x2="363.7" y2="217"/>
+<text class="tick" x="363.7" y="15" text-anchor="middle">2016</text>
+<line class="grid" x1="425.2" y1="20" x2="425.2" y2="217"/>
+<text class="tick" x="425.2" y="15" text-anchor="middle">2018</text>
+<line class="grid" x1="486.7" y1="20" x2="486.7" y2="217"/>
+<text class="tick" x="486.7" y="15" text-anchor="middle">2020</text>
+<line class="grid" x1="548.2" y1="20" x2="548.2" y2="217"/>
+<text class="tick" x="548.2" y="15" text-anchor="middle">2022</text>
+<line class="grid" x1="609.7" y1="20" x2="609.7" y2="217"/>
+<text class="tick" x="609.7" y="15" text-anchor="middle">2024</text>
+<line class="grid" x1="671.1" y1="20" x2="671.1" y2="217"/>
+<text class="tick" x="671.1" y="15" text-anchor="middle">2026</text>
+<line class="grid" x1="732.6" y1="20" x2="732.6" y2="217"/>
+<text class="tick" x="732.6" y="15" text-anchor="middle">2028</text>
+<text class="lab" x="198" y="43.5" text-anchor="end">BSc Geological Eng., ITB</text>
+<rect class="bar study" x="229.4" y="31" width="123.0" height="16" rx="0"/>
+<text class="lab" x="198" y="70.5" text-anchor="end">Data Analyst, SKK Migas</text>
+<rect class="bar work" x="371.4" y="58" width="61.5" height="16" rx="0"/>
+<text class="lab" x="198" y="97.5" text-anchor="end">Data Scientist, Bhumi Varta</text>
+<rect class="bar work" x="499.6" y="85" width="25.5" height="16" rx="0"/>
+<text class="lab" x="198" y="124.5" text-anchor="end">Senior Data Scientist, Eureka AI</text>
+<rect class="bar work" x="525.1" y="112" width="99.9" height="16" rx="0"/>
+<text class="lab" x="198" y="151.5" text-anchor="end">Lead Data Scientist, consulting</text>
+<rect class="bar work" x="625.0" y="139" width="23.1" height="16" rx="0"/>
+<text class="lab" x="198" y="178.5" text-anchor="end">Head of Data &amp; AI, Olsera</text>
+<rect class="bar work" x="659.8" y="166" width="19.1" height="16" rx="0"/>
+<text class="lab" x="198" y="205.5" text-anchor="end">MPhil Smart Mobility, Hiroshima U.</text>
+<rect class="bar study" x="678.8" y="193" width="61.5" height="16" rx="0"/>
+<line class="now" x1="694.2" y1="20" x2="694.2" y2="217"/>
+</svg></div>
+    <div class="legend"><span><i style="background:var(--bar)"></i>work</span><span><i style="background:var(--accent)"></i>study</span><span><i style="background:transparent;border-top:2px dashed var(--accent);height:0;width:16px;vertical-align:3px"></i>today</span></div>
+  </section>
+
+  <section class="thesis" aria-labelledby="h-th">
+    <h2 id="h-th">Research</h2>
+    <p class="lede">Master's researcher in Smart Mobility at Hiroshima University. I build LLM feature-engineering pipelines that turn unstructured geospatial data into features for causal and econometric models. Current work tests whether LLM-scored place features improve welfare estimates for urban pricing policy, using NYC's January 2025 congestion toll as a natural experiment. The work covers LLM prompt design and reliability testing, causal inference (difference-in-differences), discrete-choice modelling and ablation-based model evaluation.</p>
+    <h3>LLM-derived features for causal policy evaluation</h3>
+    <p class="where">Urban and Data Science Lab, Hiroshima University &middot; 2026 &ndash; present</p>
+    <ul>
+      <li><strong>LLM feature pipeline.</strong> Llama-3 70B scoring of OpenStreetMap POIs and place names into 15 structured semantic features across 4 construct families: activity, physical environment, safety and built environment.</li>
+      <li><strong>Prompt engineering and reliability.</strong> A versioned prompt library with staged probes to select wordings, repeated-run reproducibility testing, and a scorer chosen by training cutoff so it cannot have seen the policy period.</li>
+      <li><strong>Causal evaluation.</strong> Difference-in-differences on millions of NYC TLC high-volume for-hire vehicle trip records around the January 2025 congestion toll.</li>
+      <li><strong>Ablation design.</strong> A 4-arm ladder (no-LLM baseline, flat LLM features, latent-factor ICLV, embeddings) to measure what the LLM features add, with a SHAP-explained gradient-boosting robustness check.</li>
+      <li><strong>Hybrid choice modelling.</strong> Factor analysis (N=262 zones) reduces the features to latent factors for an ICLV model; welfare comes from logsum consumer surplus, with price elasticity.</li>
+      <li><strong>Pipeline engineering.</strong> Medallion layers (bronze, silver, gold) and multi-agent LLM tooling to coordinate the workflow.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-exp">
+    <h2 id="h-exp">Experience</h2>
+    <article class="job">
+  <div class="job-head"><h3>Head of Data &amp; AI</h3><span class="dates">Aug 2025 &ndash; Mar 2026</span></div>
+  <p class="org">Olsera, cloud POS and commerce platform for MSMEs &middot; Jakarta</p>
+  <ul><li>Owned data and AI strategy for a team of one data scientist and one data engineer, reporting to executives.</li><li>Designed the data architecture and schemas (orders, products, roles, AI stock recommendations, logs) behind analytics and AI use cases.</li><li>Ran proof-of-concept evaluations of Snowflake and Databricks, benchmarked against BigQuery and Redshift, to choose the company's data platform.</li></ul>
+</article>
+<article class="job">
+  <div class="job-head"><h3>Lead Data Scientist</h3><span class="dates">Jul 2024 &ndash; Mar 2025</span></div>
+  <p class="org">Enterprise IT and data consulting firm &middot; Jakarta</p>
+  <ul><li><strong>Bank BRI:</strong> designed a hybrid recommendation engine (collaborative filtering plus XGBoost) that improved product-targeting accuracy by 35% and lifted cross-sell revenue 12%.</li><li><strong>Sinarmas:</strong> led data scientists, agronomists and DevOps on a root-cause analysis system in Dataiku that raised palm oil yield 18% and cut waste by $1.2M a year.</li><li><strong>Labuan:</strong> built an LLM-driven news analytics system on Snowflake Cortex that cut misclassification by 27%, backed by a knowledge graph of 10K+ entities used by 50+ stakeholders.</li><li>Led two data scientists; client engagements improved operational efficiency by 25&ndash;40%.</li></ul>
+</article>
+<article class="job">
+  <div class="job-head"><h3>Senior Data Scientist</h3><span class="dates">Apr 2021 &ndash; Jul 2024</span></div>
+  <p class="org">Eureka AI, telecom data monetization across 7 countries &middot; Abu Dhabi</p>
+  <ul><li>Built a telco- and clickstream-based credit score reaching a Gini of 0.6, the highest in the company's history at the time.</li><li>Segmented 100M+ daily active ride-hailing and e-commerce users across five major Asian telecom operators with k-means and ensemble models (Random Forest, XGBoost) in PySpark ML and MLflow.</li><li>Made model decisions explainable to business users with SHAP and other model-agnostic methods.</li><li>Classified 30+ personas for 80M+ monthly active subscribers from clickstream, mobility and subscriber data; built a Word2Vec look-alike model in Spark.</li><li>Led the Market Intelligence products from 5% to 70% of company revenue in under two years.</li></ul>
+</article>
+<article class="job">
+  <div class="job-head"><h3>Data Scientist</h3><span class="dates">Jun 2020 &ndash; Apr 2021</span></div>
+  <p class="org">Bhumi Varta Technology, location intelligence &middot; Jakarta</p>
+  <ul><li>Built spatial models on POI, mobile and sales data that guided a client's expansion from under 100 to 200+ outlets across Indonesia.</li><li>Estimated poverty levels from satellite imagery with CNNs (PyTorch), refining socio-economic resolution from 1&times;1 km to 100&times;100 m.</li></ul>
+</article>
+<article class="job">
+  <div class="job-head"><h3>Data Analyst</h3><span class="dates">Apr 2016 &ndash; Apr 2018</span></div>
+  <p class="org">SKK Migas, upstream oil and gas regulator &middot; Jakarta</p>
+  <ul><li>Built an early ML model predicting oil and gas resources for 200+ working areas (under 10% test error); migrated data from 50+ companies; built Python and Tableau dashboards.</li></ul>
+</article>
+  </section>
+
+  <section aria-labelledby="h-edu">
+    <h2 id="h-edu">Education</h2>
+    <div class="edu">
+      <div class="edu-row"><div><strong>Hiroshima University</strong><span class="sub">MPhil, Smart Mobility: AI and data science for transport. Urban and Data Science Lab, supervised by Prof. Tao Feng.</span><span class="sub small">Programme: Innovation and Practice for Smart Society</span></div><span class="dates">Apr 2026 &ndash; Mar 2028 (expected)</span></div>
+      <div class="edu-row"><div><strong>Institut Teknologi Bandung</strong><span class="sub">B.Sc. Geological Engineering, GPA 3.52 / 4.00, cum laude</span></div><span class="dates">Aug 2011 &ndash; Aug 2015</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-sk">
+    <h2 id="h-sk">Skills</h2>
+    <dl class="skills"><div class='sk'><dt>Causal inference and econometrics</dt><dd>Difference-in-differences, discrete choice (MNL, NL, ICLV) in Biogeme, factor analysis, welfare (logsum) estimation</dd></div><div class='sk'><dt>LLMs</dt><dd>LLM prompt design and evaluation, LLM feature engineering (Llama-3), Snowflake Cortex, RAG (Elasticsearch), text-to-SQL</dd></div><div class='sk'><dt>Machine learning</dt><dd>XGBoost and gradient boosting, Random Forest, clustering, recommendation systems, credit scoring, CNNs, SHAP</dd></div><div class='sk'><dt>Data and platforms</dt><dd>Python (pandas, polars, scikit-learn, statsmodels), R, SQL, PySpark and Spark ML, large-scale parquet pipelines, MLflow, Snowflake, Databricks, Dataiku, Airflow, AWS, GCP, Docker</dd></div><div class='sk'><dt>Geospatial</dt><dd>QGIS, GeoPandas, OpenStreetMap, satellite imagery, POI and mobility data</dd></div></dl>
+  </section>
+
+  <section aria-labelledby="h-lang">
+    <h2 id="h-lang">Languages</h2>
+    <p>English (advanced) &middot; Bahasa Indonesia (native)</p>
+  </section>
+
+  <footer><span>Dhaneswara Mandrasa Triweko</span><span>Updated September 2026</span></footer>
+</main>
+
+<script>
+(function () {
+  var b = document.getElementById("copy"), m = document.getElementById("mail");
+  if (!b || !m) return;
+  b.addEventListener("click", function () {
+    var t = m.textContent;
+    function done() { b.textContent = "copied"; setTimeout(function () { b.textContent = "copy email"; }, 1600); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(m);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.textContent = "selected";
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body></html>
