@@ -166,8 +166,18 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 <p class="fig-cap">Ten-second summary. Client data stays confidential, so figures are schematic or illustrative where marked; the headline numbers are the real results.</p>
 </section>
 <section aria-labelledby="h-num"><h2 id="h-num">Results</h2><div class="results"><div class="res"><span class="num">100M+</span><span class="cap">daily active users segmented</span></div><div class="res"><span class="num">5</span><span class="cap">digital-platform clients, incl. Gojek, Grab, Tokopedia</span></div><div class="res"><span class="num">30+</span><span class="cap">personas for 80M+ monthly telecom subscribers</span></div><div class="res"><span class="num">5→70%</span><span class="cap">revenue share of the products I led</span></div></div></section>
-<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Input</em><b>Clickstream</b><span>App events from ride-hailing and e-commerce users</span></div><div class="step"><em>Features</em><b>PySpark</b><span>Usage features at hundreds of millions of rows</span></div><div class="step llm"><em>Discover</em><b>k-means</b><span>Unsupervised clustering finds the segments</span></div><div class="step llm"><em>Assign</em><b>RF / XGBoost</b><span>Supervised models label every new user daily</span></div><div class="step"><em>Ship</em><b>MLflow</b><span>Tracked models delivered as reusable products</span></div></div><p class="fig-cap">Two-stage design: clustering for discovery, classification for daily assignment at scale. Made explainable to business users with SHAP.</p></section>
+<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Input</em><b>Operator data</b><span>Top-up, call, online and location behaviour</span></div><div class="step llm"><em>Sessionize</em><b>App sessions</b><span>Cut each app's traffic into sessions</span></div><div class="step llm"><em>Classify</em><b>Driver or customer</b><span>Separate the two sides of the marketplace</span></div><div class="step llm"><em>Classify</em><b>Transacted?</b><span>Booking or purchase vs browsing</span></div><div class="step"><em>Embed</em><b>Word2Vec</b><span>Behaviour sequences as vectors</span></div><div class="step"><em>Segment</em><b>k-means → RF / XGBoost</b><span>Discover segments, assign new users daily</span></div></div><p class="fig-cap">Built in PySpark ML and tracked in MLflow, at hundreds of millions of rows. Made explainable to business users with SHAP.</p></section>
 
+<section aria-labelledby="h-hard"><h2 id="h-hard">The hard part: telco data does not say who booked a ride</h2>
+<p class="lede">An operator sees network traffic, not app screens. So each app's traffic had to be cut into sessions, each user classified as a driver or a customer, and each customer session classified as a transaction or just browsing, before any segment meant anything.</p>
+<div class="plot" id="fun"></div><div class="tip" id="fun-tip">Hover or tap a stage.</div>
+<p class="fig-cap">Schematic. Bar lengths are illustrative; real volumes are client-confidential.</p></section>
+<section aria-labelledby="h-sig"><h2 id="h-sig">Four families of signals</h2>
+<div class="tiles"><div class="tile">Top-ups<small>how people reload prepaid credit</small></div><div class="tile">Calls<small>calling behaviour</small></div><div class="tile">Online<small>app and web usage</small></div><div class="tile">Location<small>where and when people move</small></div></div>
+<p class="fig-cap">Engineered from operator data, then combined with the app-session labels above.</p></section>
+<section aria-labelledby="h-arch"><h2 id="h-arch">From behaviour to archetypes people recognise</h2>
+<p class="lede">Word2Vec embeddings of behaviour sequences place users with similar habits close together. Clusters in that space were named as archetypes a marketer can act on, and a look-alike model finds more people like each one.</p>
+<div class="tiles"><div class="tile">Mom with kids<small>archetype</small></div><div class="tile">Blue collar<small>archetype</small></div><div class="tile">White collar<small>archetype</small></div><div class="tile">+ more<small>30+ personas in total</small></div></div></section>
 <section aria-labelledby="h-tree"><h2 id="h-tree">From one user base to segments clients can act on</h2>
 <p class="lede">Unsupervised clustering finds the segments; supervised models then assign every new user to one, so segments refresh daily without re-clustering.</p>
 <div class="plot" id="tree"></div><div class="tip" id="tree-tip">Hover or tap a block.</div>
@@ -180,7 +190,7 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 <div class="plot" id="rev"></div>
 <p class="fig-cap">Start and end shares are real; the path between them is not drawn because only the endpoints are reported.</p></section>
 
-<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>segmentation</span><span>clustering</span><span>k-means</span><span>Random Forest</span><span>XGBoost</span><span>PySpark ML</span><span>MLflow</span><span>Word2Vec look-alike</span><span>SHAP</span><span>clickstream</span></div><p class="fig-cap">Also hired, mentored and set modelling standards for a data science team of six.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
+<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>segmentation</span><span>clustering</span><span>k-means</span><span>Random Forest</span><span>XGBoost</span><span>PySpark ML</span><span>MLflow</span><span>Word2Vec</span><span>look-alike modelling</span><span>sessionization</span><span>telco feature engineering</span><span>SHAP</span></div><p class="fig-cap">Also hired, mentored and set modelling standards for a data science team of six.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
 <footer><span>Dhaneswara Mandrasa</span><span>Updated October 2026</span></footer>
 </main>
 <script>(function(){var NS="http://www.w3.org/2000/svg";
@@ -188,6 +198,9 @@ function el(t,a,p){var n=document.createElementNS(NS,t);for(var k in a)n.setAttr
 function txt(t,a,p,s){var n=el(t,a,p);n.textContent=s;return n;}
 function svg(id,w,h,label){return el("svg",{viewBox:"0 0 "+w+" "+h,role:"img","aria-label":label},document.getElementById(id));}
 function hover(n,tipId,msg){var f=function(){document.getElementById(tipId).textContent=msg;};n.addEventListener("mouseenter",f);n.addEventListener("click",f);n.setAttribute("tabindex","0");n.addEventListener("focus",f);}
+
+var fu=svg("fun",760,250,"Funnel from app traffic to transactions");var st=[["App traffic","every packet-level event for one app",1],["App sessions","traffic cut into sessions per app",.72],["Customer sessions","drivers separated from customers",.5],["Transacting sessions","bookings or purchases, not browsing",.26]];
+st.forEach(function(r,i){var y=10+i*58,w=r[2]*560;var b=el("rect",{class:(i===3?"g1":i===0?"g3":"g2")+" hov",x:180,y:y,width:w,height:44,rx:3},fu);hover(b,"fun-tip",r[0]+": "+r[1]+".");txt("text",{class:"lab",x:170,y:y+27,"text-anchor":"end"},fu,r[0]);});
 
 var s=svg("tree",760,330,"Segment hierarchy schematic");var X0=110,X1=750,sp=X1-X0;
 var rows=[["ALL USERS","g1",[["100M+ daily active users",1,"Every daily active user of the client apps, from clickstream events."]]],
