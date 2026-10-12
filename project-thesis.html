@@ -1,0 +1,262 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LLM Features for Pricing · Dhaneswara Mandrasa</title><meta name="description" content="Preliminary MSc thesis results: an LLM place-feature instrument with measured reliability, and a difference-in-differences on the NYC congestion toll.">
+<meta property="og:title" content="LLM features for causal pricing evaluation · Dhaneswara Mandrasa"><meta property="og:description" content="Preliminary MSc thesis results: an LLM place-feature instrument with measured reliability, and a difference-in-differences on the NYC congestion toll."><meta property="og:image" content="https://dhaneswaramandrasa.github.io/reel_poster.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column, a to-scale career timeline as the only graphic, mono for dates and numbers. */
+:root {
+  --bg: #f4f4f1; --surface: #ffffff; --fg: #1a1a1a; --ink2: #3d3d3d; --muted: #666666; --rule: #a6a6a0; --line: #dcdcd6;
+  --accent: #3b3fb6; --deep: #2a2d8a; --accent-soft: #ececf8; --bar: #888888;
+  --display: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+    --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+  --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; margin: 0; }
+main { max-width: 860px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 60px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+.cover { background: #3b3fb6; color: #fff; margin-inline: -16px; padding: 64px 16px 48px; }
+.cover .in { max-width: 860px; margin: 0 auto; }
+.kick { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9cbf0; }
+.cover .contact, .cover .contact a, .cover .contact button { color: #e4e5fa; }
+.cover .status { background: #fff; color: #2a2d8a; }
+.top h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7.5vw, 4.4rem); line-height: 1.0; letter-spacing: -0.02em; margin-top: 14px; text-wrap: balance; }
+.role { margin-top: 18px; font-size: 1.2rem; color: #fff; max-width: 34em; text-wrap: pretty; }
+.contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.contact span, .contact a { min-width: 0; overflow-wrap: anywhere; }
+.contact button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.status { display: inline-block; margin-top: 18px; padding: 5px 12px; border-radius: 999px; font-weight: 500; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 0.78rem; }
+h2 { font-family: var(--body); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+.summary p { max-width: 44em; text-wrap: pretty; }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px 28px; }
+.res { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 2.5px solid var(--rule); padding-top: 14px; }
+.num { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 2.6rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.cap { font-size: 0.95rem; color: var(--ink2); }
+.chart { overflow-x: auto; }
+video.reel { width: 100%; height: auto; display: block; background: #000; }
+.chart svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font: 500 10px var(--mono); }
+.chart .lab { fill: var(--fg); font: 400 12px var(--body); }
+.chart .bar.work { fill: var(--bar); }
+.chart .bar.study { fill: var(--accent); }
+.chart .now { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.legend { margin-top: 10px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.job + .job { margin-top: 34px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.job h3 { font-size: 1.2rem; font-weight: 700; }
+.dates { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.org { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+.job ul, .thesis ul { color: var(--ink2); }
+.job ul { margin-top: 10px; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; max-width: 46em; }
+.job li::marker { color: var(--accent); }
+.thesis ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; max-width: 46em; }
+.thesis li::marker { color: var(--accent); }
+.thesis .lede { max-width: 44em; margin-bottom: 26px; text-wrap: pretty; }
+.thesis h3 { font-size: 1.1rem; font-weight: 600; }
+.thesis .where { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.edu { display: flex; flex-direction: column; gap: 18px; }
+.edu-row { display: flex; justify-content: space-between; gap: 4px 20px; flex-wrap: wrap; }
+.edu-row strong { font-weight: 600; }
+.edu-row .sub { color: var(--ink2); font-size: 0.95rem; display: block; }
+.edu-row .sub.small { color: var(--muted); font-size: 0.85rem; }
+dl.skills { display: flex; flex-direction: column; gap: 14px; }
+.sk { display: grid; grid-template-columns: 200px 1fr; gap: 2px 24px; }
+.sk dt { font-weight: 700; color: var(--deep); }
+.sk dd { color: var(--ink2); min-width: 0; }
+footer { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 600px) { .sk { grid-template-columns: 1fr; } body { padding-block: 32px 56px; } }
+@media print { body { padding: 0; } }
+</style>
+<style>
+.nav { display:flex; gap:22px; font-size:0.95rem; font-weight:700; margin-bottom:34px; flex-wrap:wrap; }
+.nav a { color:#c9cbf0; text-decoration:none; padding-bottom:4px; border-bottom:2px solid transparent; }
+.nav a:hover, .nav a.on { color:#fff; border-bottom-color:#fff; }
+.hero { display:grid; grid-template-columns: 1fr 190px; gap:24px 40px; align-items:start; }
+.hero img { width:190px; height:190px; object-fit:cover; border:3px solid #fff; display:block; }
+@media (max-width:640px){ .hero { grid-template-columns:1fr; } .hero img { width:120px; height:120px; grid-row:1; } }
+.now { font-family:var(--mono); font-size:0.85rem; color:var(--ink2); border-left:3px solid var(--accent); padding:6px 0 6px 14px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:34px 32px; }
+.card {  display:flex; flex-direction:column; gap:10px; min-width:0; }
+.card .fig { background:var(--surface); border:1px solid var(--line); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.card .fig svg, .card .fig img { width:100%; height:100%; display:block; object-fit:cover; }
+.card .lab { font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--deep); }
+.card h3 { font-size:1.2rem; font-weight:700; line-height:1.25; }
+.card p { color:var(--ink2); font-size:0.97rem; }
+.card .links { font-family:var(--mono); font-size:0.8rem; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; }
+.fig text { font-family: Archivo, Arial, sans-serif; }
+.more { font-weight:700; }
+</style>
+
+<style>
+.back { font-family:var(--mono); font-size:0.82rem; }
+.pre { display:inline-block; margin-top:14px; padding:4px 12px; border:1.5px solid #fff; border-radius:999px; font-family:var(--mono); font-size:0.75rem; letter-spacing:0.12em; color:#fff; }
+video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--line); background:var(--surface); }
+.lede { max-width:44em; color:var(--ink2); text-wrap:pretty; }
+.fig-cap { margin-top:12px; font-size:0.9rem; color:var(--muted); max-width:46em; text-wrap:pretty; }
+.fig-cap b { color:var(--ink2); }
+.plot { overflow-x:auto; } .plot svg { display:block; width:100%; min-width:560px; height:auto; overflow:visible; }
+.plot .grid { stroke:var(--line); stroke-width:1; }
+.plot .zero { stroke:var(--fg); stroke-width:1.5; }
+.plot .tick { fill:var(--muted); font:500 11px var(--mono); }
+.plot .lab { fill:var(--fg); font:500 12.5px var(--body); }
+.plot .band { fill:var(--accent); opacity:0.16; }
+.plot .ln { fill:none; stroke:var(--accent); stroke-width:2.5; stroke-linejoin:round; }
+.plot .dot { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.plot .dot:hover, .plot .dot.on { fill:var(--accent); }
+.plot .shade { fill:var(--accent-soft); }
+.plot .toll { stroke:var(--accent); stroke-width:1.5; stroke-dasharray:5 4; }
+.plot .note { fill:var(--accent); font:700 12px var(--body); }
+.plot .s-z { fill:var(--accent); } .plot .s-w { fill:#9a9df0; } .plot .s-m { fill:var(--bar); } .plot .s-e { fill:var(--line); }
+.plot .thr { stroke:var(--fg); stroke-width:1.5; stroke-dasharray:4 4; }
+.plot .gdot { fill:var(--accent); } .plot .gdot.low { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.legend { display:flex; flex-wrap:wrap; gap:6px 18px; margin-bottom:12px; font-size:0.85rem; color:var(--ink2); }
+.legend i { display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }
+.tip { font-family:var(--mono); font-size:0.82rem; color:var(--ink2); min-height:1.4em; margin-top:8px; }
+.pipe { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; counter-reset:s; }
+.step { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--rule); padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+.step.llm { border-top-color:var(--accent); background:var(--accent-soft); }
+.step.todo { border-style:dashed; border-top-style:dashed; opacity:0.85; }
+.step b { font-size:0.98rem; } .step span { font-size:0.85rem; color:var(--ink2); }
+.step em { font-style:normal; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--deep); }
+.status-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; }
+.status-list li { display:grid; grid-template-columns:110px 1fr; gap:12px; align-items:baseline; }
+.badge { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; text-align:center; }
+.badge.done { background:var(--accent); color:#fff; } .badge.wip { background:var(--accent-soft); color:var(--accent); } .badge.next { border:1px solid var(--rule); color:var(--muted); }
+.tags { display:flex; flex-wrap:wrap; gap:8px; } .tags span { font-family:var(--mono); font-size:0.78rem; padding:4px 10px; border:1px solid var(--line); background:var(--surface); }
+</style>
+</head><body>
+<header class="top cover"><div class="in"><nav class="nav"><a href="index.html">Home</a><a href="projects.html" class=on>Projects</a><a href="cv.html">CV</a><a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a></nav><p class="kick">Research · MSc thesis · 2026–present</p><h1>LLM features for causal pricing evaluation</h1><p class="role">Can an LLM read a city's places and produce features reliable enough to sit inside a demand model? Tested on 261 NYC zones around the January 2025 congestion toll.</p><span class="pre">PRELIMINARY · NOT PEER-REVIEWED</span></div></header>
+<main>
+<section aria-label="Summary">
+<video class="hero-vid" src="thesis-did.mp4" poster="thesis-did-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animated event-study chart: ride-hail share in the toll zone drops after January 2025"></video>
+<p class="fig-cap">Ten-second summary of the causal result. Static, explorable versions of every chart are below.</p>
+</section>
+
+<section aria-labelledby="h-num"><h2 id="h-num">Results so far</h2>
+<div class="results">
+<div class="res"><span class="num">−2.6 pp</span><span class="cap">drop in ride-hail road share inside the toll zone (DiD, 95% CI −3.2 to −2.0)</span></div>
+<div class="res"><span class="num">14 / 15</span><span class="cap">LLM place features reach reliability G ≥ 0.85 at the chosen design</span></div>
+<div class="res"><span class="num">20,250</span><span class="cap">LLM scores in the reliability pilot, 0 invalid answers</span></div>
+<div class="res"><span class="num">$4</span><span class="cap">cost of the pilot across three models</span></div>
+</div></section>
+
+<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2>
+<div class="pipe">
+<div class="step"><em>Input</em><b>City places</b><span>94K OpenStreetMap elements across 261 taxi zones</span></div>
+<div class="step llm"><em>LLM scorer</em><b>15 traits per zone</b><span>3 models × 5 prompt wordings × repeat draws, frozen and hashed prompts</span></div>
+<div class="step llm"><em>Eval gate</em><b>Measured reliability</b><span>Generalizability study: how much of each score is signal vs prompt or model noise</span></div>
+<div class="step"><em>Causal</em><b>Toll DiD</b><span>Two-way fixed effects, 38 treated zones vs 223 controls, 25 months</span></div>
+<div class="step todo"><em>Next</em><b>Demand model</b><span>Share logit with and without LLM features → price elasticity</span></div>
+</div>
+<p class="fig-cap">The LLM is treated as a measurement instrument, so it gets the same checks as a survey: reliability before use, and an ablation that asks whether its features improve the model at all.</p>
+</section>
+
+<section aria-labelledby="h-es"><h2 id="h-es">The toll moved riders off ride-hail</h2>
+<p class="lede">Event study of ride-hail (HVFHV) share of road trips in the toll zone, relative to the month before the toll. After January 2025 the share ramps down to about −4 pp and stays negative.</p>
+<div class="plot" id="es"></div><div class="tip" id="es-tip">Hover or tap a point.</div>
+<p class="fig-cap"><b>Caveat, reported rather than hidden:</b> the first two months of the panel sit above zero (data onboarding tail). Dropping them moves the estimate from −2.6 to −2.1 pp; the sign and significance hold. A formal sensitivity bound is the next robustness step.</p>
+</section>
+
+<section aria-labelledby="h-var"><h2 id="h-var">Where the noise in LLM scores comes from</h2>
+<p class="lede">For each trait, the share of score variance that is real zone-to-zone signal versus noise from the prompt wording, the choice of model, or random draws. Model disagreement, not wording, is the main noise source.</p>
+<div class="legend"><span><i class="s-z" style="background:var(--accent)"></i>Zone signal</span><span><i style="background:#9a9df0"></i>Wording</span><span><i style="background:var(--bar)"></i>Model disagreement</span><span><i style="background:var(--line)"></i>Random draw</span></div>
+<div class="plot" id="var"></div><div class="tip" id="var-tip">Hover or tap a bar.</div>
+<p class="fig-cap">Pilot: 30 zones × 15 traits × 5 wordings × 3 models (GPT-4o-mini, Llama-3.3-70B, Qwen-2.5-72B) × 3 draws. Variance components by REML.</p>
+</section>
+
+<section aria-labelledby="h-g"><h2 id="h-g">Reliability clears the bar on 14 of 15 traits</h2>
+<p class="lede">Generalizability coefficient G per trait at the pilot design (5 wordings × 3 models × 3 draws). Pre-registered target: 0.85.</p>
+<div class="plot" id="g"></div>
+<p class="fig-cap">Perceived safety peaks at 0.835 and is flagged rather than dropped. Averaging across models is what buys reliability: a single model reaches 0.85 on only 3 of 15 traits.</p>
+</section>
+
+<section aria-labelledby="h-st"><h2 id="h-st">Status</h2>
+<ul class="status-list">
+<li><span class="badge done">done</span><span>Data layer: NYC trip records, 261 zones × 25 months, toll treatment coded</span></li>
+<li><span class="badge done">done</span><span>Toll DiD and event study (preliminary, robustness in progress)</span></li>
+<li><span class="badge done">done</span><span>LLM instrument v2: per-trait prompts, five wordings, reliability pilot, design chosen</span></li>
+<li><span class="badge wip">running</span><span>Full scoring run on all 261 zones at the chosen design</span></li>
+<li><span class="badge next">next</span><span>Ablation: demand model with vs without LLM features, and price elasticity</span></li>
+</ul>
+</section>
+
+<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2>
+<div class="tags"><span>LLM evals</span><span>reliability / G-study</span><span>prompt versioning</span><span>difference-in-differences</span><span>event study</span><span>geo-experiment</span><span>discrete choice</span><span>Python</span><span>OpenRouter</span><span>DeepInfra</span><span>SQLite cost ledger</span></div>
+<p class="fig-cap">Code: release planned as an open LLM feature-scoring tool. Supervised at Hiroshima University.</p>
+<p class="back"><a href="projects.html">← all projects</a></p>
+</section>
+<footer><span>Dhaneswara Mandrasa</span><span>Updated October 2026</span></footer>
+</main>
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg";
+function el(t,a,p){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
+function txt(t,a,p,s){var n=el(t,a,p);n.textContent=s;return n;}
+function fmt(v){return (v<0?"−":v>0?"+":"")+Math.abs(v).toFixed(1);}
+// 1. event study
+var ES=[[-12,3.89,3.28,4.5],[-11,2.49,2.03,2.95],[-10,.57,.13,1.02],[-9,.45,-.19,1.08],[-8,.17,-.26,.6],[-7,-.42,-.91,.07],[-6,.88,.32,1.44],[-5,.81,.11,1.5],[-4,-.99,-1.6,-.38],[-3,-.51,-1.08,.07],[-2,.08,-.3,.46],[-1,0,0,0],[0,.52,.05,.98],[1,-.75,-1.48,-.02],[2,-2.51,-3.17,-1.84],[3,-1.61,-2.27,-.95],[4,-3.46,-4.29,-2.64],[5,-4.07,-4.97,-3.16],[6,-2.5,-3.42,-1.58],[7,-2.22,-3.17,-1.27],[8,-3.2,-4.19,-2.21],[9,-1.94,-2.98,-.9],[10,-1.55,-2.62,-.47],[11,-2.07,-3.25,-.88],[12,-.58,-1.9,.74]];
+var W=760,H=340,L=44,R=12,T=16,B=36;
+var x=function(k){return L+(k+12.5)/25*(W-L-R)}, y=function(v){return T+(4.8-v)/(4.8+5.3)*(H-T-B)};
+var s=el("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":"Event study: ride-hail share by month relative to the toll"},document.getElementById("es"));
+var tx=x(-.5);
+el("rect",{class:"shade",x:tx,y:T,width:W-R-tx,height:H-T-B},s);
+[4,2,-2,-4].forEach(function(v){el("line",{class:"grid",x1:L,x2:W-R,y1:y(v),y2:y(v)},s);txt("text",{class:"tick",x:L-8,y:y(v)+4,"text-anchor":"end"},s,(v>0?"+":"−")+Math.abs(v));});
+txt("text",{class:"tick",x:L-8,y:y(0)+4,"text-anchor":"end"},s,"0");
+el("line",{class:"zero",x1:L,x2:W-R,y1:y(0),y2:y(0)},s);
+[-12,-6,0,6,12].forEach(function(k){txt("text",{class:"tick",x:x(k),y:H-B+18,"text-anchor":"middle"},s,k>0?"+"+k:k<0?"−"+Math.abs(k):"0");});
+txt("text",{class:"tick",x:W-R,y:H-2,"text-anchor":"end"},s,"months from toll →");
+txt("text",{class:"tick",x:L,y:T-4},s,"pp vs month −1");
+el("line",{class:"toll",x1:tx,x2:tx,y1:T,y2:H-B},s);
+txt("text",{class:"note",x:tx+8,y:T+16},s,"Toll starts · Jan 2025");
+var up=ES.map(function(d){return x(d[0])+","+y(d[3])}),lo=ES.map(function(d){return x(d[0])+","+y(d[2])}).reverse();
+el("path",{class:"band",d:"M"+up.join("L")+"L"+lo.join("L")+"Z"},s);
+el("path",{class:"ln",d:"M"+ES.map(function(d){return x(d[0])+","+y(d[1])}).join("L")},s);
+var tip=document.getElementById("es-tip");
+ES.forEach(function(d){var c=el("circle",{class:"dot",cx:x(d[0]),cy:y(d[1]),r:5,tabindex:0},s);
+ var f=function(){[].forEach.call(s.querySelectorAll(".dot.on"),function(n){n.classList.remove("on")});c.classList.add("on");
+ tip.textContent="month "+(d[0]>0?"+":"")+d[0]+": "+fmt(d[1])+" pp  (95% CI "+fmt(d[2])+" to "+fmt(d[3])+")"+(d[0]===-1?"  · baseline":"");};
+ c.addEventListener("mouseenter",f);c.addEventListener("focus",f);c.addEventListener("click",f);});
+// 2. variance shares
+var V=[["Bikeability",.655,.035,.265,.044],["Trip purpose",.462,.020,.390,.128],["Transit access",.520,.087,.289,.105],["Walkability",.527,.020,.319,.135],["Street condition",.321,.096,.406,.177],["Greenery",.564,.040,.328,.069],["Land cover",.545,.016,.313,.126],["Open space",.454,.071,.345,.130],["Disorder",.163,.011,.632,.194],["Lighting",.417,.093,.365,.126],["Perceived safety",.246,.085,.471,.198],["Traffic",.302,.013,.448,.238],["Density",.475,.108,.309,.109],["Street design",.321,.034,.481,.163],["Land-use mix",.183,.015,.592,.210]];
+V.sort(function(a,b){return b[1]-a[1]});
+var W2=760,RH=24,L2=128,R2=40,H2=V.length*RH+28;
+var s2=el("svg",{viewBox:"0 0 "+W2+" "+H2,role:"img","aria-label":"Variance shares per trait"},document.getElementById("var"));
+var sx=function(v){return v*(W2-L2-R2)}, cls=["s-z","s-w","s-m","s-e"], nm=["zone signal","wording","model disagreement","random draw"];
+var tip2=document.getElementById("var-tip");
+V.forEach(function(d,i){var yy=i*RH,xx=L2;
+ txt("text",{class:"lab",x:L2-10,y:yy+RH/2+4,"text-anchor":"end"},s2,d[0]);
+ for(var j=0;j<4;j++){(function(j){var w=sx(d[j+1]);var r=el("rect",{class:cls[j],x:xx,y:yy+3,width:Math.max(w-1,0),height:RH-7,tabindex:j===0?0:-1},s2);
+  var f=function(){tip2.textContent=d[0]+": "+nm.map(function(n,q){return n+" "+Math.round(d[q+1]*100)+"%"}).join(" · ");};
+  r.addEventListener("mouseenter",f);r.addEventListener("focus",f);r.addEventListener("click",f);xx+=w;})(j);}
+ txt("text",{class:"tick",x:L2+sx(d[1])-6,y:yy+RH/2+4,"text-anchor":"end",fill:"#fff",style:"fill:#fff"},s2,Math.round(d[1]*100)+"%");
+});
+[0,.25,.5,.75,1].forEach(function(v){txt("text",{class:"tick",x:L2+sx(v),y:H2-6,"text-anchor":"middle"},s2,Math.round(v*100)+"%");});
+// 3. G per trait
+var G=[["Transit access",.953],["Walkability",.951],["Greenery",.943],["Trip purpose",.936],["Bikeability",.935],["Land cover",.925],["Traffic",.915],["Open space",.910],["Lighting",.907],["Street condition",.906],["Density",.893],["Street design",.891],["Land-use mix",.888],["Disorder",.863],["Perceived safety",.835]];
+var H3=G.length*RH+28,lo3=.80,hi3=.97;
+var s3=el("svg",{viewBox:"0 0 "+W2+" "+H3,role:"img","aria-label":"Generalizability coefficient per trait"},document.getElementById("g"));
+var gx=function(v){return L2+(v-lo3)/(hi3-lo3)*(W2-L2-R2)};
+[.80,.85,.90,.95].forEach(function(v){el("line",{class:"grid",x1:gx(v),x2:gx(v),y1:0,y2:H3-24},s3);txt("text",{class:"tick",x:gx(v),y:H3-6,"text-anchor":"middle"},s3,v.toFixed(2));});
+el("line",{class:"thr",x1:gx(.85),x2:gx(.85),y1:0,y2:H3-24},s3);
+G.forEach(function(d,i){var yy=i*RH+RH/2;txt("text",{class:"lab",x:L2-10,y:yy+4,"text-anchor":"end"},s3,d[0]);
+ el("line",{class:"grid",x1:gx(lo3),x2:gx(d[1]),y1:yy,y2:yy},s3);
+ el("circle",{class:"gdot"+(d[1]<.85?" low":""),cx:gx(d[1]),cy:yy,r:6},s3);
+ txt("text",{class:"tick",x:gx(d[1])+12,y:yy+4},s3,d[1].toFixed(3));});
+txt("text",{class:"note",x:gx(.85)+6,y:H3-30},s3,"target 0.85");
+})();
+</script>
+</body></html>
