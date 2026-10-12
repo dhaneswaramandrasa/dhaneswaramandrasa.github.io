@@ -159,24 +159,36 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 .plot .slope { stroke:var(--accent); stroke-width:3; stroke-dasharray:6 5; } .plot .big { fill:var(--accent); font:800 26px var(--display); }
 </style>
 </head><body>
-<header class="top cover"><div class="in"><nav class="nav"><a href="index.html">Home</a><a href="projects.html" class=on>Projects</a><a href="cv.html">CV</a><a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a></nav><p class="kick">Olsera · Head of Data & AI · Aug 2025 – Mar 2026</p><h1>Building a data & AI function</h1><p class="role">Owned the data and AI roadmap for a cloud POS and commerce platform with 30K+ merchants across Indonesia, reporting to executives, and hired and led the data team.</p><span class="pre">SCHEMATIC</span></div></header>
+<header class="top cover"><div class="in"><nav class="nav"><a href="index.html">Home</a><a href="projects.html" class=on>Projects</a><a href="cv.html">CV</a><a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a></nav><p class="kick">Olsera · Head of Data & AI · Aug 2025 – Mar 2026</p><h1>Building a data & AI function</h1><p class="role">Owned the data and AI roadmap for a cloud POS and commerce platform with 30K+ merchants across Indonesia: hired and led the data team, wrote the pipelines, and chose the platform.</p><span class="pre">SCHEMATIC · APPROXIMATE COUNTS</span></div></header>
 <main>
 <section aria-label="Summary">
-<video class="hero-vid" src="olsera.mp4" poster="olsera-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animated schematic of the data and AI function built at Olsera"></video>
+<video class="hero-vid" src="olsera.mp4" poster="olsera-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animated schematic: sources flow through bronze, silver and gold layers into dashboards and client data"></video>
 <p class="fig-cap">Ten-second summary. Client data stays confidential, so figures are schematic or illustrative where marked; the headline numbers are the real results.</p>
 </section>
-<section aria-labelledby="h-num"><h2 id="h-num">Results</h2><div class="results"><div class="res"><span class="num">30K+</span><span class="cap">merchants on the platform</span></div><div class="res"><span class="num">100Ks</span><span class="cap">transactions a day</span></div><div class="res"><span class="num">4</span><span class="cap">data platforms evaluated, 2 by proof of concept</span></div><div class="res"><span class="num">0→1</span><span class="cap">data function built from scratch</span></div></div></section>
-<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Sources</em><b>Core domains</b><span>Orders, products, roles and logs</span></div><div class="step llm"><em>Model</em><b>Schemas + pipelines</b><span>Architecture designed from scratch</span></div><div class="step"><em>Platform</em><b>Evidence-based choice</b><span>Snowflake and Databricks PoCs</span></div><div class="step"><em>Use</em><b>Analytics</b><span>Reporting and insight use cases</span></div><div class="step llm"><em>AI</em><b>Stock recommendations</b><span>Prototype for merchants</span></div></div><p class="fig-cap">The order matters: a data model first, then a platform chosen on evidence, then use cases that depend on both.</p></section>
+<section aria-labelledby="h-num"><h2 id="h-num">Results</h2><div class="results"><div class="res"><span class="num">30K+</span><span class="cap">merchants on the platform</span></div><div class="res"><span class="num">100Ks</span><span class="cap">transactions a day</span></div><div class="res"><span class="num">>20 → ~10–20</span><span class="cap">bronze tables refined into silver and gold</span></div><div class="res"><span class="num">4</span><span class="cap">data platforms evaluated, 2 by proof of concept</span></div></div></section>
+<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Sources</em><b>Core domains</b><span>Orders, products, roles and logs</span></div><div class="step"><em>Bronze</em><b>Raw</b><span>>20 tables, landed as-is</span></div><div class="step llm"><em>Silver</em><b>Cleaned</b><span>~10–20 conformed tables</span></div><div class="step llm"><em>Gold</em><b>Business-ready</b><span>~10–20 tables users touch</span></div><div class="step"><em>Use</em><b>Dashboards + client data</b><span>Shipped from the gold layer</span></div></div><p class="fig-cap">Pipelines written hands-on in PySpark and Python; the platform chosen on cost and team skills.</p></section>
 
-<section aria-labelledby="h-arch"><h2 id="h-arch">What was built</h2>
-<p class="lede">A data model for the platform's core domains, pipelines on top, a platform choice made on evidence, and the first analytics and AI use cases.</p>
+<section aria-labelledby="h-layers"><h2 id="h-layers">Three layers, each with a job</h2>
+<p class="lede">Raw data lands once, gets cleaned once, and is shaped once for the people who use it. Each layer narrows the table count and raises how much a table can be trusted.</p>
+<div class="plot" id="layers"></div><div class="tip" id="layers-tip">Hover or tap a layer.</div>
+<p class="fig-cap">Approximate table counts. Pipelines between layers written hands-on in PySpark and Python.</p></section>
+<section aria-labelledby="h-arch"><h2 id="h-arch">From transactions to dashboards and client data</h2>
 <div class="plot" id="arch"></div><div class="tip" id="arch-tip">Hover or tap a box.</div>
 <p class="fig-cap">Schematic of the function, not a full system diagram.</p></section>
-<section aria-labelledby="h-plat"><h2 id="h-plat">Choosing the platform on evidence</h2>
-<p class="lede">Two platforms got hands-on proofs of concept; two more served as benchmarks.</p>
-<div class="evalgrid"><div class="ev poc"><em class="badge done">proof of concept</em><b>Snowflake</b><span>Hands-on proof-of-concept evaluation</span></div><div class="ev poc"><em class="badge done">proof of concept</em><b>Databricks</b><span>Hands-on proof-of-concept evaluation</span></div><div class="ev"><em class="badge next">benchmark</em><b>BigQuery</b><span>Benchmark comparison</span></div><div class="ev"><em class="badge next">benchmark</em><b>Redshift</b><span>Benchmark comparison</span></div></div></section>
+<section aria-labelledby="h-plat"><h2 id="h-plat">Choosing the platform on cost and team skills</h2>
+<p class="lede">Two platforms got hands-on proofs of concept and two more served as benchmarks. The deciding criteria were cost and what the team could run well.</p>
+<div class="evalgrid"><div class="ev poc"><em class="badge done">proof of concept</em><b>Snowflake</b><span>Hands-on evaluation</span></div><div class="ev poc"><em class="badge done">proof of concept</em><b>Databricks</b><span>Hands-on evaluation</span></div><div class="ev"><em class="badge next">benchmark</em><b>BigQuery</b><span>Benchmark comparison</span></div><div class="ev"><em class="badge next">benchmark</em><b>Redshift</b><span>Benchmark comparison</span></div></div>
+<div class="tags" style="margin-top:14px"><span>criterion · cost</span><span>criterion · team skills</span></div></section>
+<section aria-labelledby="h-own"><h2 id="h-own">What the role owned</h2>
+<ul class="status-list">
+<li><span class="badge done">strategy</span><span>The data and AI roadmap, reported to executives</span></li>
+<li><span class="badge done">team</span><span>Hired and led the data team</span></li>
+<li><span class="badge done">hands-on</span><span>Wrote the bronze, silver and gold pipelines in PySpark and Python</span></li>
+<li><span class="badge done">delivery</span><span>Dashboards for the business and data delivered to clients from the gold layer</span></li>
+<li><span class="badge wip">next</span><span>First AI use cases prototyped on top of the gold layer</span></li>
+</ul></section>
 
-<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>data architecture</span><span>data modelling</span><span>Snowflake</span><span>Databricks</span><span>BigQuery</span><span>Redshift</span><span>recommendation systems</span><span>team building</span><span>roadmap</span></div><p class="fig-cap">Led as Head of Data & AI, reporting to executives.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
+<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>medallion architecture</span><span>data modelling</span><span>PySpark</span><span>Python</span><span>Snowflake</span><span>Databricks</span><span>BigQuery</span><span>Redshift</span><span>dashboards</span><span>team building</span><span>roadmap</span></div><p class="fig-cap">Led as Head of Data & AI, reporting to executives.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
 <footer><span>Dhaneswara Mandrasa</span><span>Updated October 2026</span></footer>
 </main>
 <script>(function(){var NS="http://www.w3.org/2000/svg";
@@ -185,15 +197,25 @@ function txt(t,a,p,s){var n=el(t,a,p);n.textContent=s;return n;}
 function svg(id,w,h,label){return el("svg",{viewBox:"0 0 "+w+" "+h,role:"img","aria-label":label},document.getElementById(id));}
 function hover(n,tipId,msg){var f=function(){document.getElementById(tipId).textContent=msg;};n.addEventListener("mouseenter",f);n.addEventListener("click",f);n.setAttribute("tabindex","0");n.addEventListener("focus",f);}
 
+var ly=svg("layers",760,230,"Tables per layer");var X0=110,sc=function(v){return X0+v*24;};
+[0,5,10,15,20,25].forEach(function(v){el("line",{class:"grid",x1:sc(v),x2:sc(v),y1:0,y2:186},ly);txt("text",{class:"tick",x:sc(v),y:204,"text-anchor":"middle"},ly,v===25?"25+":v);});
+txt("text",{class:"tick",x:sc(25),y:222,"text-anchor":"end"},ly,"tables →");
+var L=[["Bronze",20,26,"g3","Bronze: more than 20 raw tables, landed as-is from orders, products, roles and logs."],["Silver",10,20,"g2","Silver: about 10–20 cleaned, deduplicated, conformed tables."],["Gold",10,20,"g1","Gold: about 10–20 business-ready tables behind dashboards and client data."]];
+L.forEach(function(r,i){var y=14+i*58;txt("text",{class:"lab",x:X0-12,y:y+27,"text-anchor":"end"},ly,r[0]);
+ el("rect",{class:r[3],x:sc(0),y:y+16,width:sc(r[1])-sc(0),height:10,opacity:.35},ly);
+ var b=el("rect",{class:r[3]+" hov",x:sc(r[1]),y:y,width:sc(r[2])-sc(r[1]),height:42,rx:3},ly);hover(b,"layers-tip",r[4]);
+ txt("text",{class:"wt"+(i===0?" dk":""),x:sc(r[1])+10,y:y+26},ly,i===0?">20":"~10–20");});
 var s=svg("arch",760,330,"Data function schematic");
 function box(x,y,w,h,t,sub,hl,msg){var g=el("g",{class:"hov"},s);el("rect",{class:"box"+(hl?" hl":""),x:x,y:y,width:w,height:h,rx:4},g);txt("text",{class:"bt",x:x+12,y:y+h/2-(sub?3:-4)},g,t);if(sub)txt("text",{class:"bs",x:x+12,y:y+h/2+13},g,sub);hover(g,"arch-tip",msg);return g;}
 var src=[["Orders","transactions","Order and transaction records from 30K+ merchants."],["Products","catalog, stock","Product catalogue and stock levels."],["Roles","merchants, staff","Who is who: merchants, outlets, staff roles."],["Logs","app events","Application event logs."]];
-src.forEach(function(r,i){box(0,10+i*80,150,60,r[0],r[1],false,r[2]);});
-box(230,90,200,120,"Schemas + pipelines","designed from scratch",true,"Architecture and schemas for every domain, the base for analytics and AI.");
-box(230,240,200,70,"Platform decision","Snowflake vs Databricks",false,"Chosen after proofs of concept, benchmarked against BigQuery and Redshift.");
-box(520,50,230,70,"Analytics","reporting and insight",false,"Analytics use cases on the platform's data.");
-box(520,190,230,70,"AI stock recommendations","prototype",true,"A prototype that suggests stock levels to merchants.");
-src.forEach(function(r,i){el("path",{class:"conn",d:"M150,"+(40+i*80)+" C190,"+(40+i*80)+" 190,150 230,150"},s);});
-el("path",{class:"conn",d:"M430,150 C475,150 475,85 520,85"},s);el("path",{class:"conn",d:"M430,150 C475,150 475,225 520,225"},s);el("path",{class:"conn",d:"M330,210 L330,240"},s);
+src.forEach(function(r,i){box(0,10+i*80,140,60,r[0],r[1],false,r[2]);});
+box(220,10,190,80,"Bronze",">20 raw tables",false,"Raw data landed as-is.");
+box(220,120,190,80,"Silver","~10–20 cleaned tables",false,"Cleaned and conformed.");
+box(220,230,190,80,"Gold","~10–20 business tables",true,"Business-ready tables, the only layer users touch.");
+box(500,60,250,70,"Dashboards","for the business",true,"Dashboards built on gold tables.");
+box(500,200,250,70,"Client data","delivered from gold",true,"Data delivered to clients from gold tables.");
+src.forEach(function(r,i){el("path",{class:"conn",d:"M140,"+(40+i*80)+" C180,"+(40+i*80)+" 180,50 220,50"},s);});
+el("path",{class:"conn",d:"M315,90 L315,120"},s);el("path",{class:"conn",d:"M315,200 L315,230"},s);
+el("path",{class:"conn",d:"M410,270 C455,270 455,95 500,95"},s);el("path",{class:"conn",d:"M410,270 C455,270 455,235 500,235"},s);
 })();</script>
 </body></html>
