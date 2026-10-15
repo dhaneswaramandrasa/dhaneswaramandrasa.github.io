@@ -1,6 +1,12 @@
 /* Shared site behaviour: saved light/dark theme, a theme toggle, and a ⌘K search palette.
    Loaded in <head> without defer so the saved theme applies before first paint. */
 (function () {
+  // Vercel Web Analytics (static-site form of @vercel/analytics). Only on Vercel hosts; no cookies.
+  if (/vercel\.app$/.test(location.hostname)) {
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    var va = document.createElement("script"); va.defer = true; va.src = "/_vercel/insights/script.js";
+    document.head.appendChild(va);
+  }
   var root = document.documentElement;
   try { var saved = localStorage.getItem("theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
 
