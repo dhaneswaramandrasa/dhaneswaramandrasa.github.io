@@ -1,0 +1,44 @@
+/* Shared look for inner pages, matching the Jon Barron-style home page.
+   Loaded after each page's own styles, so these rules win. */
+body { font-size: 15.5px; }
+main { max-width: 800px; }
+a { text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; text-underline-offset: 3px; }
+
+/* the old indigo banner becomes a plain page header */
+.cover { background: none !important; color: var(--fg) !important; margin-inline: 0 !important; padding: 22px 0 6px !important; }
+.cover .in { max-width: 800px; }
+.crumb { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap;
+  padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 30px; font-size: 0.95rem; }
+.crumb .me { color: var(--fg); font-size: 1.15rem; font-weight: 400; letter-spacing: -0.01em; }
+.crumb .me b { font-weight: 800; }
+.crumb .links { color: var(--muted); }
+.crumb .links a { color: var(--accent); }
+.crumb .links a.on { color: var(--fg); font-weight: 700; }
+.cover .kick { color: var(--accent) !important; font-weight: 600; letter-spacing: 0; text-transform: none; font-size: 0.95rem; }
+.cover h1 { color: var(--fg); font-size: clamp(1.9rem, 4.6vw, 2.5rem); font-weight: 700; letter-spacing: -0.015em; margin-top: 6px; }
+.cover .role { color: var(--ink2) !important; font-size: 1.05rem; }
+.cover .pre { border-color: var(--accent); color: var(--accent); }
+.cover .contact, .cover .contact span { color: var(--muted) !important; }
+.cover .contact a, .cover .contact button { color: var(--accent) !important; }
+.cover .status { background: var(--accent-soft); color: var(--accent); }
+
+/* section headings: sentence case, like the home page */
+main h2 { text-transform: none; letter-spacing: -0.01em; font-size: 1.35rem; font-weight: 700; color: var(--fg);
+  border-bottom: none; padding-bottom: 0; margin-bottom: 14px; }
+
+/* project rows (shared with the home page) */
+.row { display: grid; grid-template-columns: 200px 1fr; gap: 22px; padding: 16px 12px; align-items: center; }
+.row.hl { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.thumb { position: relative; width: 200px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: var(--line); border: 1px solid var(--line); }
+.thumb img, .thumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thumb video { opacity: 0; transition: opacity .2s; }
+.row:hover .thumb video, .row:focus-within .thumb video { opacity: 1; }
+.row .title { font-size: 1.08rem; font-weight: 700; color: var(--fg); }
+.row .title:hover { color: var(--accent); }
+.row .meta { margin: 2px 0; } .row .meta em { color: var(--muted); }
+.row .desc { margin: 6px 0 0; }
+.flag { color: var(--accent); font-weight: 700; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } .thumb { width: 100%; } }
+.misc td { padding: 6px 12px 6px 0; vertical-align: top; }
+.misc td:first-child { white-space: nowrap; color: var(--muted); }
