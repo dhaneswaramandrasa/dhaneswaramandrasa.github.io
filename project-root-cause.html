@@ -1,0 +1,188 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<script>(function(){var h=location.hostname;if(/github\.io$/.test(h)){var p=location.pathname.replace(/\.html$/,'').replace(/\/index$/,'/');location.replace('https://dhaneswaramandrasa.vercel.app'+(p||'/')+location.search+location.hash);}})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Root-cause diagnosis for plantation yield · Dhaneswara Mandrasa</title><meta name="description" content="A root-cause diagnostic system with domain experts that lifted plantation yield by 18%.">
+<meta property="og:title" content="Root-cause diagnosis for plantation yield · Dhaneswara Mandrasa"><meta property="og:description" content="A root-cause diagnostic system with domain experts that lifted plantation yield by 18%."><meta property="og:image" content="https://dhaneswaramandrasa.vercel.app/showreel-poster.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column, a to-scale career timeline as the only graphic, mono for dates and numbers. */
+:root {
+  --bg: #f4f4f1; --surface: #ffffff; --fg: #1a1a1a; --ink2: #3d3d3d; --muted: #666666; --rule: #a6a6a0; --line: #dcdcd6;
+  --accent: #3b3fb6; --deep: #2a2d8a; --accent-soft: #ececf8; --bar: #888888;
+  --display: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+    --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+  --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; margin: 0; }
+main { max-width: 860px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 60px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+.cover { background: #3b3fb6; color: #fff; margin-inline: -16px; padding: 64px 16px 48px; }
+.cover .in { max-width: 860px; margin: 0 auto; }
+.kick { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9cbf0; }
+.cover .contact, .cover .contact a, .cover .contact button { color: #e4e5fa; }
+.cover .status { background: #fff; color: #2a2d8a; }
+.top h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7.5vw, 4.4rem); line-height: 1.0; letter-spacing: -0.02em; margin-top: 14px; text-wrap: balance; }
+.role { margin-top: 18px; font-size: 1.2rem; color: #fff; max-width: 34em; text-wrap: pretty; }
+.contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.contact span, .contact a { min-width: 0; overflow-wrap: anywhere; }
+.contact button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.status { display: inline-block; margin-top: 18px; padding: 5px 12px; border-radius: 999px; font-weight: 500; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 0.78rem; }
+h2 { font-family: var(--body); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+.summary p { max-width: 44em; text-wrap: pretty; }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px 28px; }
+.res { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 2.5px solid var(--rule); padding-top: 14px; }
+.num { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 2.6rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.cap { font-size: 0.95rem; color: var(--ink2); }
+.chart { overflow-x: auto; }
+video.reel { width: 100%; height: auto; display: block; background: #000; }
+.chart svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font: 500 10px var(--mono); }
+.chart .lab { fill: var(--fg); font: 400 12px var(--body); }
+.chart .bar.work { fill: var(--bar); }
+.chart .bar.study { fill: var(--accent); }
+.chart .now { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.legend { margin-top: 10px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.job + .job { margin-top: 34px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.job h3 { font-size: 1.2rem; font-weight: 700; }
+.dates { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.org { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+.job ul, .thesis ul { color: var(--ink2); }
+.job ul { margin-top: 10px; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; max-width: 46em; }
+.job li::marker { color: var(--accent); }
+.thesis ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; max-width: 46em; }
+.thesis li::marker { color: var(--accent); }
+.thesis .lede { max-width: 44em; margin-bottom: 26px; text-wrap: pretty; }
+.thesis h3 { font-size: 1.1rem; font-weight: 600; }
+.thesis .where { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.edu { display: flex; flex-direction: column; gap: 18px; }
+.edu-row { display: flex; justify-content: space-between; gap: 4px 20px; flex-wrap: wrap; }
+.edu-row strong { font-weight: 600; }
+.edu-row .sub { color: var(--ink2); font-size: 0.95rem; display: block; }
+.edu-row .sub.small { color: var(--muted); font-size: 0.85rem; }
+dl.skills { display: flex; flex-direction: column; gap: 14px; }
+.sk { display: grid; grid-template-columns: 200px 1fr; gap: 2px 24px; }
+.sk dt { font-weight: 700; color: var(--deep); }
+.sk dd { color: var(--ink2); min-width: 0; }
+footer { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 600px) { .sk { grid-template-columns: 1fr; } body { padding-block: 32px 56px; } }
+@media print { body { padding: 0; } }
+</style>
+<style>
+.nav { display:flex; gap:22px; font-size:0.95rem; font-weight:700; margin-bottom:34px; flex-wrap:wrap; }
+.nav a { color:#c9cbf0; text-decoration:none; padding-bottom:4px; border-bottom:2px solid transparent; }
+.nav a:hover, .nav a.on { color:#fff; border-bottom-color:#fff; }
+.hero { display:grid; grid-template-columns: 1fr 190px; gap:24px 40px; align-items:start; }
+.hero img { width:190px; height:190px; object-fit:cover; border:3px solid #fff; display:block; }
+@media (max-width:640px){ .hero { grid-template-columns:1fr; } .hero img { width:120px; height:120px; grid-row:1; } }
+.now { font-family:var(--mono); font-size:0.85rem; color:var(--ink2); border-left:3px solid var(--accent); padding:6px 0 6px 14px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:34px 32px; }
+.card {  display:flex; flex-direction:column; gap:10px; min-width:0; }
+.card .fig { background:var(--surface); border:1px solid var(--line); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.card .fig svg, .card .fig img { width:100%; height:100%; display:block; object-fit:cover; }
+.card .lab { font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--deep); }
+.card h3 { font-size:1.2rem; font-weight:700; line-height:1.25; }
+.card p { color:var(--ink2); font-size:0.97rem; }
+.card .links { font-family:var(--mono); font-size:0.8rem; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; }
+.fig text { font-family: Archivo, Arial, sans-serif; }
+.more { font-weight:700; }
+</style>
+
+<style>
+.back { font-family:var(--mono); font-size:0.82rem; }
+.pre { display:inline-block; margin-top:14px; padding:4px 12px; border:1.5px solid #fff; border-radius:999px; font-family:var(--mono); font-size:0.75rem; letter-spacing:0.12em; color:#fff; }
+video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--line); background:var(--surface); }
+.lede { max-width:44em; color:var(--ink2); text-wrap:pretty; }
+.fig-cap { margin-top:12px; font-size:0.9rem; color:var(--muted); max-width:46em; text-wrap:pretty; }
+.fig-cap b { color:var(--ink2); }
+.plot { overflow-x:auto; } .plot svg { display:block; width:100%; min-width:560px; height:auto; overflow:visible; }
+.plot .grid { stroke:var(--line); stroke-width:1; }
+.plot .zero { stroke:var(--fg); stroke-width:1.5; }
+.plot .tick { fill:var(--muted); font:500 11px var(--mono); }
+.plot .lab { fill:var(--fg); font:500 12.5px var(--body); }
+.plot .band { fill:var(--accent); opacity:0.16; }
+.plot .ln { fill:none; stroke:var(--accent); stroke-width:2.5; stroke-linejoin:round; }
+.plot .dot { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.plot .dot:hover, .plot .dot.on { fill:var(--accent); }
+.plot .shade { fill:var(--accent-soft); }
+.plot .toll { stroke:var(--accent); stroke-width:1.5; stroke-dasharray:5 4; }
+.plot .note { fill:var(--accent); font:700 12px var(--body); }
+.plot .s-z { fill:var(--accent); } .plot .s-w { fill:#9a9df0; } .plot .s-m { fill:var(--bar); } .plot .s-e { fill:var(--line); }
+.plot .thr { stroke:var(--fg); stroke-width:1.5; stroke-dasharray:4 4; }
+.plot .gdot { fill:var(--accent); } .plot .gdot.low { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.legend { display:flex; flex-wrap:wrap; gap:6px 18px; margin-bottom:12px; font-size:0.85rem; color:var(--ink2); }
+.legend i { display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }
+.tip { font-family:var(--mono); font-size:0.82rem; color:var(--ink2); min-height:1.4em; margin-top:8px; }
+.pipe { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; counter-reset:s; }
+.step { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--rule); padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+.step.llm { border-top-color:var(--accent); background:var(--accent-soft); }
+.step.todo { border-style:dashed; border-top-style:dashed; opacity:0.85; }
+.step b { font-size:0.98rem; } .step span { font-size:0.85rem; color:var(--ink2); }
+.step em { font-style:normal; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--deep); }
+.status-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; }
+.status-list li { display:grid; grid-template-columns:110px 1fr; gap:12px; align-items:baseline; }
+.badge { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; text-align:center; }
+.badge.done { background:var(--accent); color:#fff; } .badge.wip { background:var(--accent-soft); color:var(--accent); } .badge.next { border:1px solid var(--rule); color:var(--muted); }
+.tags { display:flex; flex-wrap:wrap; gap:8px; } .tags span { font-family:var(--mono); font-size:0.78rem; padding:4px 10px; border:1px solid var(--line); background:var(--surface); }
+</style>
+<style>
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; }
+.tile { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); padding:10px 12px; font-size:0.92rem; }
+.tile small { display:block; font-family:var(--mono); font-size:0.72rem; color:var(--muted); }
+.ctrl { display:flex; align-items:center; gap:12px; margin-top:10px; font-family:var(--mono); font-size:0.82rem; color:var(--ink2); flex-wrap:wrap; }
+.ctrl input { flex:1; min-width:160px; accent-color:var(--accent); }
+.evalgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; }
+.ev { background:var(--surface); border:1px solid var(--line); padding:14px; display:flex; flex-direction:column; gap:6px; }
+.ev.poc { border-color:var(--accent); background:var(--accent-soft); }
+.ev b { font-size:1.05rem; } .ev span { font-size:0.85rem; color:var(--ink2); }
+.plot .box { fill:var(--surface); stroke:var(--rule); stroke-width:1.5; } .plot .box.hl { fill:var(--accent-soft); stroke:var(--accent); }
+.plot .bt { fill:var(--fg); font:700 13px var(--body); } .plot .bs { fill:var(--muted); font:500 10.5px var(--mono); }
+.plot .conn { stroke:var(--accent); stroke-width:1.8; fill:none; }
+.plot .g1 { fill:var(--accent); } .plot .g2 { fill:#7b7fd6; } .plot .g3 { fill:#b9bbea; }
+.plot .wt { fill:#fff; font:700 12px var(--body); } .plot .wt.dk { fill:#2a2d8a; }
+.plot .hov:hover { opacity:0.8; cursor:pointer; }
+.plot .roc { fill:none; stroke:var(--accent); stroke-width:2.5; } .plot .diag { stroke:var(--rule); stroke-width:1.5; stroke-dasharray:5 4; }
+.plot .area { fill:var(--accent); opacity:0.14; } .plot .cut { fill:var(--accent); stroke:var(--surface); stroke-width:2; }
+.plot .slope { stroke:var(--accent); stroke-width:3; stroke-dasharray:6 5; } .plot .big { fill:var(--accent); font:800 26px var(--display); }
+</style>
+<link rel="stylesheet" href="theme.css">
+<link rel="canonical" href="https://dhaneswaramandrasa.vercel.app/project-root-cause">
+<meta property="og:url" content="https://dhaneswaramandrasa.vercel.app/project-root-cause">
+<script src="site.js"></script>
+<style>
+.fig-svg { display:block; width:100%; height:auto; overflow:visible; }
+.fig-svg .t { fill: var(--fg); font: 600 13px var(--body); } .fig-svg .s { fill: var(--muted); font: 500 11px var(--mono); }
+.fig-svg .w { fill: #fff; font: 700 12px var(--body); }
+.fig-svg .ax { stroke: var(--rule); stroke-width: 1.5; } .fig-svg .gl { stroke: var(--line); stroke-width: 1; }
+.fig-svg .bone { stroke: var(--fg); stroke-width: 2; fill: none; } .fig-svg .rib { stroke: var(--rule); stroke-width: 1.5; }
+.fig-svg .acc { fill: var(--accent); } .fig-svg .soft { fill: var(--accent-soft); } .fig-svg .grey { fill: var(--bar); }
+.fig-svg .card { fill: var(--surface); stroke: var(--line); } .fig-svg .hlc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.fig-svg .arr { stroke: var(--accent); stroke-width: 2.5; fill: none; marker-end: url(#ah); }
+.chips2 { display:flex; flex-wrap:wrap; gap:10px; } .chips2 span { padding:8px 14px; background: var(--accent-soft); border-left: 5px solid var(--accent); font-weight:700; }
+</style>
+</head><body>
+<header class="top cover"><div class="in"><nav class="crumb" aria-label="Site"><a class="me" href="index.html"><b>Dhaneswara</b> Mandrasa</a><span class="links"><a href="index.html">home</a> / <a href="projects.html" class=on>projects</a> / <a href="cv.html">cv</a> / <a href="Dhaneswara_Mandrasa_CV.pdf">pdf</a></span><span data-tools></span></nav><p class="kick">iZeno · agriculture client · 2024–2025</p><h1>Root-cause diagnosis for plantation yield</h1><p class="role">When a plantation block grows poorly, is it the land, the pesticide, the species, or something else? Led a diagnostic system built with domain experts that attributes poor growth to its likely causes, so the field team fixes the right thing.</p><span class="pre">SCHEMATIC · CLIENT CONFIDENTIAL</span></div></header>
+<main>
+<section aria-labelledby="h-num"><h2 id="h-num">Results</h2><div class="results"><div class="res"><span class="num">+18%</span><span class="cap">yield after acting on the diagnosis</span></div><div class="res"><span class="num">with experts</span><span class="cap">built together with domain experts</span></div><div class="res"><span class="num">per block</span><span class="cap">causes ranked for each plantation block</span></div></div></section>
+<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Input</em><b>Block data</b><span>Land, pesticide use, species and more</span></div><div class="step"><em>Join</em><b>Growth & yield</b><span>Outcome per block</span></div><div class="step llm"><em>Model</em><b>Yield drivers</b><span>Which factors move growth</span></div><div class="step llm"><em>Diagnose</em><b>Root cause</b><span>Likely causes for each weak block</span></div><div class="step"><em>Review</em><b>Domain experts</b><span>Check against field knowledge</span></div><div class="step"><em>Act</em><b>Fix the cause</b><span>Targeted changes in the field</span></div></div><p class="fig-cap">Diagnosis, not just prediction: the output is a ranked list of causes the field team can act on.</p></section>
+<section aria-labelledby="h-fb"><h2 id="h-fb">The candidate causes</h2><p class="lede">A fishbone (cause-and-effect) view of what can hold a plantation block back.</p><div class="plot"><svg class="fig-svg" viewBox="0 0 760 320"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--accent)"/></marker></defs><path class="bone" d="M40,160 L600,160"/><rect x="600" y="125" width="150" height="70" rx="6" class="hlc"/><text class="t" x="675" y="155" text-anchor="middle">Low growth</text><text class="s" x="675" y="174" text-anchor="middle">or yield</text><path class="bone" d="M90,40 L170,160"/><text class="t" x="90" y="30" text-anchor="middle">Land</text><path class="rib" d="M67,80 L117,80"/><text class="s" x="63" y="84" text-anchor="end">soil</text><path class="rib" d="M93,120 L143,120"/><text class="s" x="89" y="124" text-anchor="end">slope</text><path class="bone" d="M290,40 L370,160"/><text class="t" x="290" y="30" text-anchor="middle">Pesticide</text><path class="rib" d="M267,80 L317,80"/><text class="s" x="263" y="84" text-anchor="end">type</text><path class="rib" d="M293,120 L343,120"/><text class="s" x="289" y="124" text-anchor="end">timing</text><path class="bone" d="M440,40 L520,160"/><text class="t" x="440" y="30" text-anchor="middle">Species</text><path class="rib" d="M417,80 L467,80"/><text class="s" x="413" y="84" text-anchor="end">variety</text><path class="rib" d="M443,120 L493,120"/><text class="s" x="439" y="124" text-anchor="end">age</text><path class="bone" d="M90,280 L170,160"/><text class="t" x="90" y="300" text-anchor="middle">Management</text><path class="rib" d="M67,240 L117,240"/><text class="s" x="63" y="244" text-anchor="end">fertiliser</text><path class="rib" d="M93,200 L143,200"/><text class="s" x="89" y="204" text-anchor="end">spacing</text><path class="bone" d="M290,280 L370,160"/><text class="t" x="290" y="300" text-anchor="middle">Weather</text><path class="rib" d="M267,240 L317,240"/><text class="s" x="263" y="244" text-anchor="end">rain</text><path class="rib" d="M293,200 L343,200"/><text class="s" x="289" y="204" text-anchor="end">heat</text><path class="bone" d="M440,280 L520,160"/><text class="t" x="440" y="300" text-anchor="middle">Other</text><path class="rib" d="M417,240 L467,240"/><text class="s" x="413" y="244" text-anchor="end">pests</text><path class="rib" d="M443,200 L493,200"/><text class="s" x="439" y="204" text-anchor="end">disease</text></svg></div><p class="fig-cap">Schematic. Land, pesticide and species are the project's main factors; the other branches and the sub-causes are examples.</p></section>
+<section aria-labelledby="h-dr"><h2 id="h-dr">How much each factor explains</h2><div class="plot"><svg class="fig-svg" viewBox="0 0 760 204"><text class="t" x="170" y="32" text-anchor="end">Land</text><rect x="180" y="14" width="425" height="26" class="acc" rx="3"/><text class="t" x="615" y="32">34%</text><text class="t" x="170" y="78" text-anchor="end">Species</text><rect x="180" y="60" width="338" height="26" class="grey" rx="3"/><text class="t" x="528" y="78">27%</text><text class="t" x="170" y="124" text-anchor="end">Pesticide</text><rect x="180" y="106" width="262" height="26" class="grey" rx="3"/><text class="t" x="452" y="124">21%</text><text class="t" x="170" y="170" text-anchor="end">Other</text><rect x="180" y="152" width="225" height="26" class="grey" rx="3"/><text class="t" x="415" y="170">18%</text></svg></div><p class="fig-cap">Illustrative shares, not the client result.</p></section>
+<section aria-labelledby="h-y"><h2 id="h-y">Yield, before and after</h2><div class="plot"><svg class="fig-svg" viewBox="0 0 760 112"><text class="t" x="170" y="32" text-anchor="end">before</text><rect x="180" y="14" width="400" height="26" class="grey" rx="3"/><text class="t" x="590" y="32">100</text><text class="t" x="170" y="78" text-anchor="end">after</text><rect x="180" y="60" width="472" height="26" class="acc" rx="3"/><text class="t" x="662" y="78">118</text></svg></div><p class="fig-cap">Indexed: before = 100. The +18% is the real result.</p></section>
+<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>root-cause analysis</span><span>diagnostic modelling</span><span>feature attribution</span><span>agriculture</span><span>domain-expert review</span></div><p class="fig-cap">Client names stay confidential.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
+<footer><span>Dhaneswara Mandrasa</span><span>Updated October 2026</span></footer>
+</main>
+</body></html>

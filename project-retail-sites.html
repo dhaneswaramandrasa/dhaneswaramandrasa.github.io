@@ -1,0 +1,187 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<script>(function(){var h=location.hostname;if(/github\.io$/.test(h)){var p=location.pathname.replace(/\.html$/,'').replace(/\/index$/,'/');location.replace('https://dhaneswaramandrasa.vercel.app'+(p||'/')+location.search+location.hash);}})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Choosing where to open the next store · Dhaneswara Mandrasa</title><meta name="description" content="Spatial models on demographic, POI and mobility data that guided a retail network from under 100 to 200+ outlets.">
+<meta property="og:title" content="Choosing where to open the next store · Dhaneswara Mandrasa"><meta property="og:description" content="Spatial models on demographic, POI and mobility data that guided a retail network from under 100 to 200+ outlets."><meta property="og:image" content="https://dhaneswaramandrasa.vercel.app/showreel-poster.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column, a to-scale career timeline as the only graphic, mono for dates and numbers. */
+:root {
+  --bg: #f4f4f1; --surface: #ffffff; --fg: #1a1a1a; --ink2: #3d3d3d; --muted: #666666; --rule: #a6a6a0; --line: #dcdcd6;
+  --accent: #3b3fb6; --deep: #2a2d8a; --accent-soft: #ececf8; --bar: #888888;
+  --display: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+    --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15161c; --surface: #1d1e26; --fg: #ececf0; --ink2: #c9cad2; --muted: #9a9ba6; --rule: #4a4b55; --line: #2c2d36;
+  --accent: #9a9df0; --deep: #c9cbf0; --accent-soft: #262852; --bar: #7c7d88; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; margin: 0; }
+main { max-width: 860px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 60px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+.cover { background: #3b3fb6; color: #fff; margin-inline: -16px; padding: 64px 16px 48px; }
+.cover .in { max-width: 860px; margin: 0 auto; }
+.kick { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9cbf0; }
+.cover .contact, .cover .contact a, .cover .contact button { color: #e4e5fa; }
+.cover .status { background: #fff; color: #2a2d8a; }
+.top h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7.5vw, 4.4rem); line-height: 1.0; letter-spacing: -0.02em; margin-top: 14px; text-wrap: balance; }
+.role { margin-top: 18px; font-size: 1.2rem; color: #fff; max-width: 34em; text-wrap: pretty; }
+.contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.contact span, .contact a { min-width: 0; overflow-wrap: anywhere; }
+.contact button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.status { display: inline-block; margin-top: 18px; padding: 5px 12px; border-radius: 999px; font-weight: 500; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 0.78rem; }
+h2 { font-family: var(--body); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+.summary p { max-width: 44em; text-wrap: pretty; }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px 28px; }
+.res { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-top: 2.5px solid var(--rule); padding-top: 14px; }
+.num { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 2.6rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.cap { font-size: 0.95rem; color: var(--ink2); }
+.chart { overflow-x: auto; }
+video.reel { width: 100%; height: auto; display: block; background: #000; }
+.chart svg { display: block; min-width: 620px; width: 100%; height: auto; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font: 500 10px var(--mono); }
+.chart .lab { fill: var(--fg); font: 400 12px var(--body); }
+.chart .bar.work { fill: var(--bar); }
+.chart .bar.study { fill: var(--accent); }
+.chart .now { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.legend { margin-top: 10px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.job + .job { margin-top: 34px; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.job h3 { font-size: 1.2rem; font-weight: 700; }
+.dates { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.org { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+.job ul, .thesis ul { color: var(--ink2); }
+.job ul { margin-top: 10px; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; max-width: 46em; }
+.job li::marker { color: var(--accent); }
+.thesis ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; max-width: 46em; }
+.thesis li::marker { color: var(--accent); }
+.thesis .lede { max-width: 44em; margin-bottom: 26px; text-wrap: pretty; }
+.thesis h3 { font-size: 1.1rem; font-weight: 600; }
+.thesis .where { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.edu { display: flex; flex-direction: column; gap: 18px; }
+.edu-row { display: flex; justify-content: space-between; gap: 4px 20px; flex-wrap: wrap; }
+.edu-row strong { font-weight: 600; }
+.edu-row .sub { color: var(--ink2); font-size: 0.95rem; display: block; }
+.edu-row .sub.small { color: var(--muted); font-size: 0.85rem; }
+dl.skills { display: flex; flex-direction: column; gap: 14px; }
+.sk { display: grid; grid-template-columns: 200px 1fr; gap: 2px 24px; }
+.sk dt { font-weight: 700; color: var(--deep); }
+.sk dd { color: var(--ink2); min-width: 0; }
+footer { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 600px) { .sk { grid-template-columns: 1fr; } body { padding-block: 32px 56px; } }
+@media print { body { padding: 0; } }
+</style>
+<style>
+.nav { display:flex; gap:22px; font-size:0.95rem; font-weight:700; margin-bottom:34px; flex-wrap:wrap; }
+.nav a { color:#c9cbf0; text-decoration:none; padding-bottom:4px; border-bottom:2px solid transparent; }
+.nav a:hover, .nav a.on { color:#fff; border-bottom-color:#fff; }
+.hero { display:grid; grid-template-columns: 1fr 190px; gap:24px 40px; align-items:start; }
+.hero img { width:190px; height:190px; object-fit:cover; border:3px solid #fff; display:block; }
+@media (max-width:640px){ .hero { grid-template-columns:1fr; } .hero img { width:120px; height:120px; grid-row:1; } }
+.now { font-family:var(--mono); font-size:0.85rem; color:var(--ink2); border-left:3px solid var(--accent); padding:6px 0 6px 14px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:34px 32px; }
+.card {  display:flex; flex-direction:column; gap:10px; min-width:0; }
+.card .fig { background:var(--surface); border:1px solid var(--line); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.card .fig svg, .card .fig img { width:100%; height:100%; display:block; object-fit:cover; }
+.card .lab { font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--deep); }
+.card h3 { font-size:1.2rem; font-weight:700; line-height:1.25; }
+.card p { color:var(--ink2); font-size:0.97rem; }
+.card .links { font-family:var(--mono); font-size:0.8rem; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; }
+.fig text { font-family: Archivo, Arial, sans-serif; }
+.more { font-weight:700; }
+</style>
+
+<style>
+.back { font-family:var(--mono); font-size:0.82rem; }
+.pre { display:inline-block; margin-top:14px; padding:4px 12px; border:1.5px solid #fff; border-radius:999px; font-family:var(--mono); font-size:0.75rem; letter-spacing:0.12em; color:#fff; }
+video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--line); background:var(--surface); }
+.lede { max-width:44em; color:var(--ink2); text-wrap:pretty; }
+.fig-cap { margin-top:12px; font-size:0.9rem; color:var(--muted); max-width:46em; text-wrap:pretty; }
+.fig-cap b { color:var(--ink2); }
+.plot { overflow-x:auto; } .plot svg { display:block; width:100%; min-width:560px; height:auto; overflow:visible; }
+.plot .grid { stroke:var(--line); stroke-width:1; }
+.plot .zero { stroke:var(--fg); stroke-width:1.5; }
+.plot .tick { fill:var(--muted); font:500 11px var(--mono); }
+.plot .lab { fill:var(--fg); font:500 12.5px var(--body); }
+.plot .band { fill:var(--accent); opacity:0.16; }
+.plot .ln { fill:none; stroke:var(--accent); stroke-width:2.5; stroke-linejoin:round; }
+.plot .dot { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.plot .dot:hover, .plot .dot.on { fill:var(--accent); }
+.plot .shade { fill:var(--accent-soft); }
+.plot .toll { stroke:var(--accent); stroke-width:1.5; stroke-dasharray:5 4; }
+.plot .note { fill:var(--accent); font:700 12px var(--body); }
+.plot .s-z { fill:var(--accent); } .plot .s-w { fill:#9a9df0; } .plot .s-m { fill:var(--bar); } .plot .s-e { fill:var(--line); }
+.plot .thr { stroke:var(--fg); stroke-width:1.5; stroke-dasharray:4 4; }
+.plot .gdot { fill:var(--accent); } .plot .gdot.low { fill:var(--surface); stroke:var(--accent); stroke-width:2; }
+.legend { display:flex; flex-wrap:wrap; gap:6px 18px; margin-bottom:12px; font-size:0.85rem; color:var(--ink2); }
+.legend i { display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }
+.tip { font-family:var(--mono); font-size:0.82rem; color:var(--ink2); min-height:1.4em; margin-top:8px; }
+.pipe { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; counter-reset:s; }
+.step { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--rule); padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+.step.llm { border-top-color:var(--accent); background:var(--accent-soft); }
+.step.todo { border-style:dashed; border-top-style:dashed; opacity:0.85; }
+.step b { font-size:0.98rem; } .step span { font-size:0.85rem; color:var(--ink2); }
+.step em { font-style:normal; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--deep); }
+.status-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; }
+.status-list li { display:grid; grid-template-columns:110px 1fr; gap:12px; align-items:baseline; }
+.badge { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; text-align:center; }
+.badge.done { background:var(--accent); color:#fff; } .badge.wip { background:var(--accent-soft); color:var(--accent); } .badge.next { border:1px solid var(--rule); color:var(--muted); }
+.tags { display:flex; flex-wrap:wrap; gap:8px; } .tags span { font-family:var(--mono); font-size:0.78rem; padding:4px 10px; border:1px solid var(--line); background:var(--surface); }
+</style>
+<style>
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px; }
+.tile { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); padding:10px 12px; font-size:0.92rem; }
+.tile small { display:block; font-family:var(--mono); font-size:0.72rem; color:var(--muted); }
+.ctrl { display:flex; align-items:center; gap:12px; margin-top:10px; font-family:var(--mono); font-size:0.82rem; color:var(--ink2); flex-wrap:wrap; }
+.ctrl input { flex:1; min-width:160px; accent-color:var(--accent); }
+.evalgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; }
+.ev { background:var(--surface); border:1px solid var(--line); padding:14px; display:flex; flex-direction:column; gap:6px; }
+.ev.poc { border-color:var(--accent); background:var(--accent-soft); }
+.ev b { font-size:1.05rem; } .ev span { font-size:0.85rem; color:var(--ink2); }
+.plot .box { fill:var(--surface); stroke:var(--rule); stroke-width:1.5; } .plot .box.hl { fill:var(--accent-soft); stroke:var(--accent); }
+.plot .bt { fill:var(--fg); font:700 13px var(--body); } .plot .bs { fill:var(--muted); font:500 10.5px var(--mono); }
+.plot .conn { stroke:var(--accent); stroke-width:1.8; fill:none; }
+.plot .g1 { fill:var(--accent); } .plot .g2 { fill:#7b7fd6; } .plot .g3 { fill:#b9bbea; }
+.plot .wt { fill:#fff; font:700 12px var(--body); } .plot .wt.dk { fill:#2a2d8a; }
+.plot .hov:hover { opacity:0.8; cursor:pointer; }
+.plot .roc { fill:none; stroke:var(--accent); stroke-width:2.5; } .plot .diag { stroke:var(--rule); stroke-width:1.5; stroke-dasharray:5 4; }
+.plot .area { fill:var(--accent); opacity:0.14; } .plot .cut { fill:var(--accent); stroke:var(--surface); stroke-width:2; }
+.plot .slope { stroke:var(--accent); stroke-width:3; stroke-dasharray:6 5; } .plot .big { fill:var(--accent); font:800 26px var(--display); }
+</style>
+<link rel="stylesheet" href="theme.css">
+<link rel="canonical" href="https://dhaneswaramandrasa.vercel.app/project-retail-sites">
+<meta property="og:url" content="https://dhaneswaramandrasa.vercel.app/project-retail-sites">
+<script src="site.js"></script>
+<style>
+.fig-svg { display:block; width:100%; height:auto; overflow:visible; }
+.fig-svg .t { fill: var(--fg); font: 600 13px var(--body); } .fig-svg .s { fill: var(--muted); font: 500 11px var(--mono); }
+.fig-svg .w { fill: #fff; font: 700 12px var(--body); }
+.fig-svg .ax { stroke: var(--rule); stroke-width: 1.5; } .fig-svg .gl { stroke: var(--line); stroke-width: 1; }
+.fig-svg .bone { stroke: var(--fg); stroke-width: 2; fill: none; } .fig-svg .rib { stroke: var(--rule); stroke-width: 1.5; }
+.fig-svg .acc { fill: var(--accent); } .fig-svg .soft { fill: var(--accent-soft); } .fig-svg .grey { fill: var(--bar); }
+.fig-svg .card { fill: var(--surface); stroke: var(--line); } .fig-svg .hlc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.fig-svg .arr { stroke: var(--accent); stroke-width: 2.5; fill: none; marker-end: url(#ah); }
+.chips2 { display:flex; flex-wrap:wrap; gap:10px; } .chips2 span { padding:8px 14px; background: var(--accent-soft); border-left: 5px solid var(--accent); font-weight:700; }
+</style>
+</head><body>
+<header class="top cover"><div class="in"><nav class="crumb" aria-label="Site"><a class="me" href="index.html"><b>Dhaneswara</b> Mandrasa</a><span class="links"><a href="index.html">home</a> / <a href="projects.html" class=on>projects</a> / <a href="cv.html">cv</a> / <a href="Dhaneswara_Mandrasa_CV.pdf">pdf</a></span><span data-tools></span></nav><p class="kick">Bhumi Varta · location intelligence · 2020–2021</p><h1>Choosing where to open the next store</h1><p class="role">Learned what makes an existing store succeed from the area around it, demographics, nearby places and how people move, then scored every candidate location so the client could expand where the next store would do best.</p><span class="pre">SCHEMATIC · CLIENT CONFIDENTIAL</span></div></header>
+<main>
+<section aria-labelledby="h-num"><h2 id="h-num">Results</h2><div class="results"><div class="res"><span class="num"><100 → 200+</span><span class="cap">outlets, expansion guided by the model</span></div><div class="res"><span class="num">3</span><span class="cap">signal families: demographic, location / POI, mobility</span></div><div class="res"><span class="num">every cell</span><span class="cap">of the map scored, not a shortlist by hand</span></div></div></section>
+<section aria-labelledby="h-how"><h2 id="h-how">How it works</h2><div class="pipe"><div class="step"><em>Input</em><b>Existing outlets</b><span>Locations and sales</span></div><div class="step"><em>Describe</em><b>The area around each</b><span>Demographic, POI and mobility</span></div><div class="step llm"><em>Learn</em><b>What good looks like</b><span>Model sales from area attributes</span></div><div class="step llm"><em>Score</em><b>Every candidate cell</b><span>Predicted potential across the map</span></div><div class="step"><em>Decide</em><b>Shortlist</b><span>Top cells, checked on the ground</span></div></div><p class="fig-cap">The model learns from the stores that already exist, so the recommendation is grounded in this retailer's own performance.</p></section>
+<section aria-labelledby="h-map"><h2 id="h-map">A potential map</h2><p class="lede">Each square is a map cell; the darker it is, the better a new store is predicted to do. Orange outlines mark the best cells without a store yet.</p><div class="plot"><svg class="fig-svg" viewBox="0 0 692 418"><rect x="10" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.13"/><rect x="10" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.20"/><rect x="10" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.21"/><rect x="10" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.25"/><rect x="10" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.24"/><rect x="10" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.14"/><rect x="10" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.10"/><rect x="10" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.18"/><rect x="10" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.10"/><rect x="52" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.18"/><rect x="52" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="52" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="52" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="52" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="52" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.30"/><rect x="52" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.17"/><rect x="52" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.18"/><rect x="52" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.18"/><rect x="94" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.28"/><rect x="94" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.43"/><rect x="94" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.53"/><rect x="94" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.50"/><rect x="94" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.54"/><rect x="94" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="94" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.26"/><rect x="94" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.14"/><rect x="94" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.19"/><rect x="136" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="136" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.54"/><rect x="136" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.71"/><rect x="136" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.75"/><rect x="136" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.72"/><rect x="136" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.50"/><rect x="136" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.38"/><rect x="136" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.22"/><rect x="136" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.21"/><rect x="178" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.42"/><rect x="178" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.51"/><rect x="178" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.68"/><rect x="178" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.77"/><rect x="178" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.78"/><rect x="178" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.55"/><rect x="178" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.39"/><rect x="178" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.21"/><rect x="178" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.22"/><rect x="220" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.33"/><rect x="220" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.49"/><rect x="220" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.67"/><rect x="220" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.74"/><rect x="220" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.71"/><rect x="220" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.53"/><rect x="220" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.40"/><rect x="220" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="220" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.40"/><rect x="262" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.30"/><rect x="262" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.36"/><rect x="262" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.55"/><rect x="262" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.61"/><rect x="262" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.56"/><rect x="262" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="262" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.54"/><rect x="262" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.52"/><rect x="262" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.55"/><rect x="304" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.22"/><rect x="304" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.25"/><rect x="304" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.29"/><rect x="304" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="304" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.40"/><rect x="304" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.46"/><rect x="304" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.70"/><rect x="304" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.72"/><rect x="304" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.62"/><rect x="346" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.14"/><rect x="346" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.23"/><rect x="346" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.27"/><rect x="346" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.23"/><rect x="346" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.38"/><rect x="346" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.50"/><rect x="346" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.75"/><rect x="346" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.78"/><rect x="346" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.77"/><rect x="388" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.20"/><rect x="388" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.19"/><rect x="388" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="388" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.38"/><rect x="388" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.46"/><rect x="388" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.57"/><rect x="388" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.61"/><rect x="388" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.69"/><rect x="388" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.65"/><rect x="430" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.17"/><rect x="430" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.18"/><rect x="430" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.29"/><rect x="430" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.55"/><rect x="430" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.64"/><rect x="430" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.78"/><rect x="430" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.71"/><rect x="430" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.54"/><rect x="430" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.51"/><rect x="472" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.16"/><rect x="472" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.25"/><rect x="472" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.38"/><rect x="472" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.56"/><rect x="472" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.74"/><rect x="472" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.85"/><rect x="472" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.73"/><rect x="472" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.55"/><rect x="472" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.40"/><rect x="514" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.13"/><rect x="514" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.20"/><rect x="514" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.40"/><rect x="514" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.51"/><rect x="514" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.67"/><rect x="514" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.67"/><rect x="514" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.65"/><rect x="514" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.52"/><rect x="514" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.29"/><rect x="556" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.16"/><rect x="556" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.21"/><rect x="556" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.23"/><rect x="556" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.41"/><rect x="556" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.51"/><rect x="556" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.58"/><rect x="556" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.49"/><rect x="556" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.42"/><rect x="556" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.31"/><rect x="598" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.08"/><rect x="598" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.11"/><rect x="598" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.23"/><rect x="598" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.34"/><rect x="598" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.31"/><rect x="598" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.36"/><rect x="598" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.35"/><rect x="598" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.26"/><rect x="598" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.20"/><rect x="640" y="10" width="40" height="40" fill="var(--accent)" fill-opacity="0.10"/><rect x="640" y="52" width="40" height="40" fill="var(--accent)" fill-opacity="0.12"/><rect x="640" y="94" width="40" height="40" fill="var(--accent)" fill-opacity="0.17"/><rect x="640" y="136" width="40" height="40" fill="var(--accent)" fill-opacity="0.17"/><rect x="640" y="178" width="40" height="40" fill="var(--accent)" fill-opacity="0.21"/><rect x="640" y="220" width="40" height="40" fill="var(--accent)" fill-opacity="0.27"/><rect x="640" y="262" width="40" height="40" fill="var(--accent)" fill-opacity="0.17"/><rect x="640" y="304" width="40" height="40" fill="var(--accent)" fill-opacity="0.20"/><rect x="640" y="346" width="40" height="40" fill="var(--accent)" fill-opacity="0.19"/><circle cx="156.0" cy="114.0" r="7" fill="var(--fg)"/><circle cx="240.0" cy="198.0" r="7" fill="var(--fg)"/><circle cx="450.0" cy="282.0" r="7" fill="var(--fg)"/><circle cx="534.0" cy="198.0" r="7" fill="var(--fg)"/><circle cx="324.0" cy="324.0" r="7" fill="var(--fg)"/><circle cx="114.0" cy="282.0" r="7" fill="var(--fg)"/><circle cx="576.0" cy="114.0" r="7" fill="var(--fg)"/><rect x="472" y="220" width="40" height="40" fill="none" stroke="#e07a2f" stroke-width="3"/><rect x="178" y="178" width="40" height="40" fill="none" stroke="#e07a2f" stroke-width="3"/><rect x="430" y="220" width="40" height="40" fill="none" stroke="#e07a2f" stroke-width="3"/><rect x="346" y="304" width="40" height="40" fill="none" stroke="#e07a2f" stroke-width="3"/><rect x="346" y="346" width="40" height="40" fill="none" stroke="#e07a2f" stroke-width="3"/><circle cx="20" cy="406" r="6" fill="var(--fg)"/><text class="s" x="32" y="410">existing outlet</text><rect x="170" y="398" width="14" height="14" fill="none" stroke="#e07a2f" stroke-width="3"/><text class="s" x="192" y="410">top candidate cell</text><text class="s" x="350" y="410">darker = higher predicted potential</text></svg></div><p class="fig-cap">Schematic. Grid, stores and scores are illustrative.</p></section>
+<section aria-labelledby="h-g"><h2 id="h-g">Network growth</h2><div class="plot"><svg class="fig-svg" viewBox="0 0 760 112"><text class="t" x="170" y="32" text-anchor="end">before</text><rect x="180" y="14" width="227" height="26" class="grey" rx="3"/><text class="t" x="417" y="32">&lt;100</text><text class="t" x="170" y="78" text-anchor="end">after</text><rect x="180" y="60" width="455" height="26" class="acc" rx="3"/><text class="t" x="645" y="78">200+</text></svg></div><p class="fig-cap">Outlet count before and after the expansion the model guided.</p></section>
+<section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2><div class="tags"><span>site selection</span><span>geospatial ML</span><span>POI data</span><span>mobility data</span><span>demographics</span><span>GeoPandas</span></div><p class="fig-cap">Client names stay confidential.</p><p class="back"><a href="projects.html">← all projects</a></p></section>
+<footer><span>Dhaneswara Mandrasa</span><span>Updated October 2026</span></footer>
+</main>
+</body></html>
