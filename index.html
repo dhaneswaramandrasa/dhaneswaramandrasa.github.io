@@ -19,7 +19,10 @@ a:focus-visible { outline: 2px solid var(--hover); outline-offset: 2px; }
 .name { text-align: center; font-size: 34px; margin: 18px 0 10px; font-weight: 400; letter-spacing: -0.01em; } .name b { font-weight: 800; }
 .intro { display: grid; grid-template-columns: 1fr 230px; gap: 28px; align-items: center; }
 .intro p { margin: 0 0 12px; }
-.links { text-align: center; margin-top: 8px; }
+.links { text-align: center; margin-top: 4px; }
+.mail { text-align: center; margin: 8px 0 0; font-size: 16px; }
+.mail button { font: inherit; font-size: 12px; color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 4px; padding: 1px 8px; margin-left: 6px; cursor: pointer; vertical-align: 1px; }
+.mail button:hover { color: var(--link); border-color: var(--link); }
 .links a { margin: 0 2px; }
 .fig { margin: 0; } .fig figcaption { margin-top: 8px; text-align: center; font: 12px "IBM Plex Mono", Menlo, monospace; color: var(--muted); }
 .photo { width: 230px; height: 270px; object-fit: cover; border-radius: 10px; display: block; }
@@ -54,7 +57,8 @@ h2 { font-size: 22px; font-weight: 700; margin: 34px 0 6px; letter-spacing: -0.0
       <p>I'm a data scientist and MPhil researcher in Smart Mobility at <a href="https://www.hiroshima-u.ac.jp/en">Hiroshima University</a>, in the Urban and Data Science Lab supervised by Prof. Tao Feng. My work is on pricing, risk and mobility: models that people actually use to make a decision.</p>
       <p>Before that I spent eight years in industry. At <a href="project-segmentation.html">Eureka AI</a> in Abu Dhabi I worked with data from seven telecom operators across Asia and the UAE, segmenting 100M+ daily app users for clients such as Gojek, Grab and Tokopedia. Most recently I was Head of Data &amp; AI at Olsera.</p>
       <p>I'm open to remote roles.</p>
-      <p class="links"><a href="mailto:dhaneswara.mandrasa@gmail.com">Email</a> &nbsp;/&nbsp; <a href="cv.html">CV</a> (<a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a>) &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/dhaneswaramandrasa">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/dhaneswaramandrasa">GitHub</a></p>
+      <p class="mail"><a id="mail" href="mailto:dhaneswara.mandrasa@gmail.com?subject=Hello%20from%20your%20portfolio">dhaneswara.mandrasa@gmail.com</a> <button type="button" id="copy" aria-label="Copy email address">copy</button></p>
+      <p class="links"><a href="cv.html">CV</a> (<a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a>) &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/dhaneswaramandrasa">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/dhaneswaramandrasa">GitHub</a></p>
     </div>
     <figure class="fig"><img class="photo" src="photo.jpg" alt="Photo of Dhaneswara Mandrasa"><figcaption>Higashihiroshima · Jakarta</figcaption></figure>
   </div>
@@ -115,6 +119,10 @@ h2 { font-size: 22px; font-weight: 700; margin: 34px 0 6px; letter-spacing: -0.0
   <p class="credit">Updated October 2026 · design adapted from <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron's website</a></p>
 </div>
 <script>
+document.getElementById("copy").addEventListener("click",function(){var b=this,t="dhaneswara.mandrasa@gmail.com";
+  function ok(){b.textContent="copied";setTimeout(function(){b.textContent="copy";},1600);}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("mail"));var s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent="selected";}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,sel);else sel();}catch(e){sel();}});
 document.querySelectorAll(".row").forEach(function(r){var v=r.querySelector("video");if(!v)return;
   r.addEventListener("mouseenter",function(){v.play().catch(function(){});});
   r.addEventListener("mouseleave",function(){v.pause();});});
