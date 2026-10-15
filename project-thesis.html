@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <script>(function(){var h=location.hostname;if(/github\.io$/.test(h)){var p=location.pathname.replace(/\.html$/,'').replace(/\/index$/,'/');location.replace('https://dhaneswaramandrasa.vercel.app'+(p||'/')+location.search+location.hash);}})();</script><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LLM Features for Pricing · Dhaneswara Mandrasa</title><meta name="description" content="Preliminary MSc thesis results: an LLM place-feature instrument with measured reliability, and a difference-in-differences on the NYC congestion toll.">
+<title>LLM Features You Can Trust in a Pricing Model · Dhaneswara Mandrasa</title><meta name="description" content="Preliminary MSc thesis results: an LLM place-feature instrument with measured reliability, and a difference-in-differences on the NYC congestion toll.">
 <meta property="og:title" content="LLM features for causal pricing evaluation · Dhaneswara Mandrasa"><meta property="og:description" content="Preliminary MSc thesis results: an LLM place-feature instrument with measured reliability, and a difference-in-differences on the NYC congestion toll."><meta property="og:image" content="https://dhaneswaramandrasa.vercel.app/thesis-did-poster.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -144,7 +144,7 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 <meta property="og:url" content="https://dhaneswaramandrasa.vercel.app/project-thesis">
 <script src="site.js"></script>
 </head><body>
-<header class="top cover"><div class="in"><nav class="crumb" aria-label="Site"><a class="me" href="index.html"><b>Dhaneswara</b> Mandrasa</a><span class="links"><a href="index.html">home</a> / <a href="projects.html" class=on>projects</a> / <a href="cv.html">cv</a> / <a href="Dhaneswara_Mandrasa_CV.pdf">pdf</a></span><span data-tools></span></nav><p class="kick">Research · MSc thesis · 2026–present</p><h1>LLM features for causal pricing evaluation</h1><p class="role">Can an LLM read a city's places and produce features reliable enough to sit inside a demand model? Tested on 261 NYC zones around the January 2025 congestion toll.</p><span class="pre">PRELIMINARY · NOT PEER-REVIEWED</span></div></header>
+<header class="top cover"><div class="in"><nav class="crumb" aria-label="Site"><a class="me" href="index.html"><b>Dhaneswara</b> Mandrasa</a><span class="links"><a href="index.html">home</a> / <a href="projects.html" class=on>projects</a> / <a href="cv.html">cv</a> / <a href="Dhaneswara_Mandrasa_CV.pdf">pdf</a></span><span data-tools></span></nav><p class="kick">MPhil research · Hiroshima University · 2026–present</p><h1>LLM features you can trust in a pricing model</h1><p class="role">Every pricing team adding LLM features will ask whether they can be trusted. This project builds the evaluation harness that answers it, then tests the features on a real price change: New York’s January 2025 congestion toll, 261 zones.</p><span class="pre">PRELIMINARY · NOT PEER-REVIEWED</span></div></header>
 <main>
 <section aria-label="Summary">
 <video class="hero-vid" src="thesis-did.mp4" poster="thesis-did-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animated event-study chart: ride-hail share in the toll zone drops after January 2025"></video>
@@ -153,8 +153,8 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 
 <section aria-labelledby="h-num"><h2 id="h-num">Results so far</h2>
 <div class="results">
-<div class="res"><span class="num">−2.6 pp</span><span class="cap">drop in ride-hail road share inside the toll zone (DiD, 95% CI −3.2 to −2.0)</span></div>
-<div class="res"><span class="num">14 / 15</span><span class="cap">LLM place features reach reliability G ≥ 0.85 at the chosen design</span></div>
+<div class="res"><span class="num">14 / 15</span><span class="cap">LLM features pass the eval harness (reliability G ≥ 0.85)</span></div>
+<div class="res"><span class="num">−2.6 pp</span><span class="cap">incrementality: drop in ride-hail road share inside the toll zone (DiD, 95% CI −3.2 to −2.0)</span></div>
 <div class="res"><span class="num">20,250</span><span class="cap">LLM scores in the reliability pilot, 0 invalid answers</span></div>
 <div class="res"><span class="num">$4</span><span class="cap">cost of the pilot across three models</span></div>
 </div></section>
@@ -170,24 +170,32 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 <p class="fig-cap">The LLM is treated as a measurement instrument, so it gets the same checks as a survey: reliability before use, and an ablation that asks whether its features improve the model at all.</p>
 </section>
 
-<section aria-labelledby="h-es"><h2 id="h-es">The toll moved riders off ride-hail</h2>
+<section aria-labelledby="h-es"><h2 id="h-es">Geo-experiment: what a real price change did to demand</h2>
 <p class="lede">Event study of ride-hail (HVFHV) share of road trips in the toll zone, relative to the month before the toll. After January 2025 the share ramps down to about −4 pp and stays negative.</p>
 <div class="plot" id="es"></div><div class="tip" id="es-tip">Hover or tap a point.</div>
 <p class="fig-cap"><b>Caveat, reported rather than hidden:</b> the first two months of the panel sit above zero (data onboarding tail). Dropping them moves the estimate from −2.6 to −2.1 pp; the sign and significance hold. A formal sensitivity bound is the next robustness step.</p>
 </section>
 
-<section aria-labelledby="h-var"><h2 id="h-var">Where the noise in LLM scores comes from</h2>
+<section aria-labelledby="h-var"><h2 id="h-var">LLM eval harness: where the noise comes from</h2>
 <p class="lede">For each trait, the share of score variance that is real zone-to-zone signal versus noise from the prompt wording, the choice of model, or random draws. Model disagreement, not wording, is the main noise source.</p>
 <div class="legend"><span><i class="s-z" style="background:var(--accent)"></i>Zone signal</span><span><i style="background:#9a9df0"></i>Wording</span><span><i style="background:var(--bar)"></i>Model disagreement</span><span><i style="background:var(--line)"></i>Random draw</span></div>
 <div class="plot" id="var"></div><div class="tip" id="var-tip">Hover or tap a bar.</div>
 <p class="fig-cap">Pilot: 30 zones × 15 traits × 5 wordings × 3 models (GPT-4o-mini, Llama-3.3-70B, Qwen-2.5-72B) × 3 draws. Variance components by REML.</p>
 </section>
 
-<section aria-labelledby="h-g"><h2 id="h-g">Reliability clears the bar on 14 of 15 traits</h2>
+<section aria-labelledby="h-g"><h2 id="h-g">LLM eval harness: 14 of 15 features pass</h2>
 <p class="lede">Generalizability coefficient G per trait at the pilot design (5 wordings × 3 models × 3 draws). Pre-registered target: 0.85.</p>
 <div class="plot" id="g"></div>
 <p class="fig-cap">Perceived safety peaks at 0.835 and is flagged rather than dropped. Averaging across models is what buys reliability: a single model reaches 0.85 on only 3 of 15 traits.</p>
 </section>
+
+<section aria-labelledby="h-team"><h2 id="h-team">What a pricing team would do with this</h2>
+<ul class="status-list">
+<li><span class="badge done">price</span><span>Read price response zone by zone instead of city-wide, so tolls, surcharges or discounts can differ by area.</span></li>
+<li><span class="badge done">evals</span><span>Test LLM-generated features for reliability before they reach a production model, not after a bad decision.</span></li>
+<li><span class="badge done">reuse</span><span>Run the same harness on any entities and traits: stores, routes, merchants, with a frozen, versioned prompt spec.</span></li>
+</ul>
+<p class="fig-cap">Price-elasticity estimates come next; this page will update when they land.</p></section>
 
 <section aria-labelledby="h-st"><h2 id="h-st">Status</h2>
 <ul class="status-list">
@@ -200,7 +208,7 @@ video.hero-vid { width:100%; height:auto; display:block; border:1px solid var(--
 </section>
 
 <section aria-labelledby="h-tags"><h2 id="h-tags">Methods and stack</h2>
-<div class="tags"><span>LLM evals</span><span>reliability / G-study</span><span>prompt versioning</span><span>difference-in-differences</span><span>event study</span><span>geo-experiment</span><span>discrete choice</span><span>Python</span><span>OpenRouter</span><span>DeepInfra</span><span>SQLite cost ledger</span></div>
+<div class="tags"><span>LLM evals</span><span>guardrails</span><span>geo-lift</span><span>incrementality</span><span>LLM evals</span><span>reliability / G-study</span><span>prompt versioning</span><span>difference-in-differences</span><span>event study</span><span>geo-experiment</span><span>discrete choice</span><span>Python</span><span>OpenRouter</span><span>DeepInfra</span><span>SQLite cost ledger</span></div>
 <p class="fig-cap">Code: release planned as an open LLM feature-scoring tool. Supervised at Hiroshima University.</p>
 <p class="back"><a href="projects.html">← all projects</a></p>
 </section>

@@ -19,7 +19,7 @@
     { group: "Navigation", label: "projects", href: "projects.html" },
     { group: "Navigation", label: "cv", href: "cv.html" },
     { group: "Navigation", label: "cv (pdf)", href: "Dhaneswara_Mandrasa_CV.pdf" },
-    { group: "Case studies", label: "LLM features for causal pricing evaluation", hint: "thesis · NYC congestion toll", href: "project-thesis.html" },
+    { group: "Case studies", label: "LLM features you can trust in a pricing model", hint: "thesis · NYC congestion toll", href: "project-thesis.html" },
     { group: "Case studies", label: "Segmenting 100M+ daily users", hint: "Eureka AI · telco data", href: "project-segmentation.html" },
     { group: "Case studies", label: "Alternative credit score, Gini 0.6", hint: "Eureka AI · credit risk", href: "project-credit.html" },
     { group: "Case studies", label: "A data & AI function from scratch", hint: "Olsera · data platform", href: "project-olsera.html" },
