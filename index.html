@@ -33,6 +33,18 @@ a:focus-visible { outline: 2px solid var(--hover); outline-offset: 2px; }
 @media (max-width: 640px) { .intro { grid-template-columns: 1fr; } .fig { order: -1; } .photo { margin: 0 auto; width: 180px; height: 210px; } }
 .reel { width: 100%; display: block; margin-top: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--line); }
 .vcap { margin: 6px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+.pubs { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 26px; }
+.pubs li { display: grid; grid-template-columns: 130px 1fr; gap: 22px; align-items: start; }
+.badge2 { display: block; text-align: center; color: #fff; font-weight: 700; font-size: 13px; padding: 4px 6px; border-radius: 4px; margin-top: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+.b-th { background: #3b3fb6; } .b-eu { background: #1f6f6b; } .b-ol { background: #5b5fc8; } .b-iz { background: #b5482b; } .b-bv { background: #a07a10; } .b-sk { background: #5c5c5c; }
+.pt { font-size: 17px; font-weight: 700; color: var(--fg); } a.pt:hover { color: var(--link); }
+.who { margin-top: 2px; } .where em { color: var(--muted); } .what { margin-top: 2px; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.btns a, .btns .fl { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; padding: 3px 12px; border: 1px solid var(--fg); color: var(--fg); border-radius: 3px; }
+.btns a:hover { border-color: var(--link); color: var(--link); text-decoration: none; }
+.btns .fl { border-color: #b5482b; color: #b5482b; }
+.more { margin-top: 18px; }
+@media (max-width: 560px) { .pubs li { grid-template-columns: 1fr; gap: 6px; } .badge2 { display: inline-block; width: auto; padding: 3px 12px; justify-self: start; } }
 h2 { font-size: 22px; font-weight: 700; margin: 34px 0 6px; letter-spacing: -0.01em; }
 .lede { margin: 0 0 14px; }
 .row { display: grid; grid-template-columns: 200px 1fr; gap: 22px; padding: 16px 12px; align-items: center; }
@@ -77,55 +89,20 @@ h2 { font-size: 22px; font-weight: 700; margin: 34px 0 6px; letter-spacing: -0.0
   <video class="reel" autoplay muted loop playsinline controls preload="metadata" poster="showreel-poster.jpg" aria-label="30-second showreel: thesis research on LLM features and the NYC congestion toll, then segmentation work at Eureka AI"><source src="showreel.mp4" type="video/mp4"></video>
   <p class="vcap">In 30 seconds: the research, then the industry work.</p>
 
-  <h2>Research</h2>
-  <p class="lede">I'm interested in using LLMs as measurement instruments: turning unstructured text about places into features that are reliable enough to enter causal and demand models, and checking whether they help.</p>
-
-  <div class="row hl">
-    <div class="thumb"><img src="thesis-did-poster.jpg" alt=""><video src="thesis-did.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
-    <div>
-      <a class="title" href="project-thesis.html">LLM Features You Can Trust in a Pricing Model</a>
-      <p class="meta"><b>Dhaneswara Mandrasa</b>, supervised by Tao Feng</p>
-      <p class="meta"><em>MPhil thesis, Hiroshima University</em>, 2026 – 2028 &nbsp;<span class="flag">preliminary</span></p>
-      <p class="meta"><a href="project-thesis.html">case study</a> / <a href="thesis-did.mp4">video</a></p>
-      <p class="desc">Three LLMs score 15 place features for 261 NYC zones, with reliability measured before use (14 of 15 reach G ≥ 0.85). A difference-in-differences on the January 2025 congestion toll finds a 2.6 pp drop in ride-hail share.</p>
-    </div>
-  </div>
-
-  <h2>Industry work</h2>
-  <div class="row">
-    <div class="thumb"><img src="seg-poster.jpg" alt=""><video src="seg.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
-    <div>
-      <a class="title" href="project-segmentation.html">Segmenting 100M+ Daily App Users from Telco Data</a>
-      <p class="meta"><em>Eureka AI, Abu Dhabi</em>, 2021 – 2024</p>
-      <p class="meta"><a href="project-segmentation.html">case study</a> / <a href="seg.mp4">video</a></p>
-      <p class="desc">Sessionised app traffic, separated drivers from customers and transactions from browsing, then built <a href="project-personas.html">Word2Vec personas</a> for Gojek, Grab, Tokopedia and foodpanda. The products grew from 5% to 70% of company revenue.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="thumb"><img src="credit-poster.jpg" alt=""><video src="credit.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
-    <div>
-      <a class="title" href="project-credit.html">Alternative Credit Scoring from Telco Behaviour</a>
-      <p class="meta"><em>Eureka AI, Abu Dhabi</em></p>
-      <p class="meta"><a href="project-credit.html">case study</a></p>
-      <p class="desc">Top-up, call and online behaviour for people with no credit file. Gini 0.6, the best in the company's history.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="thumb"><img src="olsera-poster.jpg" alt=""><video src="olsera.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
-    <div>
-      <a class="title" href="project-olsera.html">A Data &amp; AI Function from Scratch</a>
-      <p class="meta"><em>Olsera, Jakarta</em>, 2025 – 2026</p>
-      <p class="meta"><a href="project-olsera.html">case study</a></p>
-      <p class="desc">Bronze, silver and gold pipelines in PySpark for a commerce platform with 30K+ merchants.</p>
-    </div>
-  </div>
-
-  <h2>Elsewhere</h2>
-  <table class="misc">
-    <tr><td>iZeno</td><td>Led <a href="project-credit-automl.html">AutoML credit scoring</a> (pipeline run time −75%) and a <a href="project-root-cause.html">root-cause diagnostic system</a> for plantation yield (+18%).</td></tr>
-    <tr><td>Bhumi Varta</td><td><a href="project-retail-sites.html">Retail site selection</a> that guided growth from under 100 to 200+ outlets, and <a href="project-ses-satellite.html">socio-economic status from satellite imagery</a> at 100 m.</td></tr>
-    <tr><td>SKK Migas</td><td>An early ML model for oil and gas resources across 200+ working areas.</td></tr>
-  </table>
+  <h2>Selected work</h2>
+  <ol class="pubs">
+    <li><span class="badge2 b-th">Thesis</span><div><a class="pt" href="project-thesis.html">LLM Features You Can Trust in a Pricing Model</a><div class="who"><b>Dhaneswara Mandrasa</b>, supervised by Tao Feng</div><div class="where"><em>MPhil research, Hiroshima University</em>, 2026 – 2028</div><div class="what">LLM eval harness (14 of 15 features pass) and a geo-experiment on New York’s congestion toll: −2.6 pp ride-hail share.</div><div class="btns"><a href="project-thesis.html">case study</a><a href="thesis-did.mp4">video</a><span class="fl">preliminary</span></div></div></li>
+    <li><span class="badge2 b-eu">Eureka AI</span><div><a class="pt" href="project-segmentation.html">Segmenting 100M+ Daily App Users from Telco Data</a><div class="who">Senior Data Scientist</div><div class="where"><em>Eureka AI, Abu Dhabi</em>, 2021 – 2024</div><div class="what">Sessions, driver vs customer, transactions; for Gojek, Grab, Tokopedia and foodpanda. Products grew from 5% to 70% of revenue.</div><div class="btns"><a href="project-segmentation.html">case study</a><a href="seg.mp4">video</a></div></div></li>
+    <li><span class="badge2 b-eu">Eureka AI</span><div><a class="pt" href="project-personas.html">Personas from Telecom Behaviour</a><div class="who">Senior Data Scientist</div><div class="where"><em>Eureka AI, Abu Dhabi</em>, 2021 – 2024</div><div class="what">Word2Vec embeddings into 30+ personas for 80M+ subscribers, with a look-alike model.</div><div class="btns"><a href="project-personas.html">case study</a></div></div></li>
+    <li><span class="badge2 b-eu">Eureka AI</span><div><a class="pt" href="project-credit.html">Alternative Credit Score from Telco Behaviour</a><div class="who">Senior Data Scientist</div><div class="where"><em>Eureka AI, Abu Dhabi</em>, 2021 – 2024</div><div class="what">Top-up, call and online behaviour for people with no credit file. Gini 0.6.</div><div class="btns"><a href="project-credit.html">case study</a><a href="credit.mp4">video</a><span class="fl">company record</span></div></div></li>
+    <li><span class="badge2 b-ol">Olsera</span><div><a class="pt" href="project-olsera.html">A Data & AI Function from Scratch</a><div class="who">Head of Data &amp; AI</div><div class="where"><em>Olsera, Jakarta</em>, 2025 – 2026</div><div class="what">Bronze, silver and gold pipelines in PySpark for 30K+ merchants.</div><div class="btns"><a href="project-olsera.html">case study</a><a href="olsera.mp4">video</a></div></div></li>
+    <li><span class="badge2 b-iz">iZeno</span><div><a class="pt" href="project-credit-automl.html">AutoML Credit Scoring</a><div class="who">Lead Data Scientist</div><div class="where"><em>iZeno, Jakarta</em>, 2024 – 2025</div><div class="what">Automated feature preparation and model search; pipeline run time −75%.</div><div class="btns"><a href="project-credit-automl.html">case study</a></div></div></li>
+    <li><span class="badge2 b-iz">iZeno</span><div><a class="pt" href="project-root-cause.html">Root-Cause Diagnosis for Plantation Yield</a><div class="who">Lead Data Scientist</div><div class="where"><em>iZeno, Jakarta</em>, 2024 – 2025</div><div class="what">Land, pesticide or species? Built with domain experts; yield +18%.</div><div class="btns"><a href="project-root-cause.html">case study</a></div></div></li>
+    <li><span class="badge2 b-bv">Bhumi Varta</span><div><a class="pt" href="project-retail-sites.html">Choosing Where to Open the Next Store</a><div class="who">Data Scientist</div><div class="where"><em>Bhumi Varta, Jakarta</em>, 2020 – 2021</div><div class="what">Demographic, POI and mobility data scored every map cell; outlets grew from under 100 to 200+.</div><div class="btns"><a href="project-retail-sites.html">case study</a></div></div></li>
+    <li><span class="badge2 b-bv">Bhumi Varta</span><div><a class="pt" href="project-ses-satellite.html">Socio-Economic Status from Satellite Imagery</a><div class="who">Data Scientist</div><div class="where"><em>Bhumi Varta, Jakarta</em>, 2020 – 2021</div><div class="what">CNNs on satellite tiles, refined from 1 km to 100 m grid cells.</div><div class="btns"><a href="project-ses-satellite.html">case study</a></div></div></li>
+    <li><span class="badge2 b-sk">SKK Migas</span><div><span class="pt">Oil and Gas Resource Prediction</span><div class="who">Data Analyst</div><div class="where"><em>SKK Migas, Jakarta</em>, 2016 – 2018</div><div class="what">An early ML model across 200+ working areas, under 10% test error.</div></div></li>
+  </ol>
+  <p class="more"><a href="projects.html">all projects with figures →</a></p>
 
   <p class="credit">Updated October 2026 · design adapted from <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron's website</a></p>
 </div>
