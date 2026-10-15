@@ -3,8 +3,12 @@
   "cleanUrls": true,
   "headers": [
     {
-      "source": "/(.*)\\.(mp4|jpg|pdf)",
+      "source": "/(.*)\\.(mp4|jpg|svg)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    },
+    {
+      "source": "/(.*)\\.pdf",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
     }
   ]
 }
