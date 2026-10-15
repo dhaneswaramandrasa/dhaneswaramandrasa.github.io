@@ -12,11 +12,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
 :root { --bg: #f4f4f1; --fg: #1a1a1a; --muted: #5c5c5c; --link: #3b3fb6; --hover: #2a2d8a; --hl: #ececf8; --line: #dcdcd6; --flag: #3b3fb6; }
-@media (prefers-color-scheme: dark) { :root { --bg: #15161c; --fg: #ececf0; --muted: #9a9ba6; --link: #9a9df0; --hover: #c9cbf0; --hl: #262852; --line: #2c2d36; --flag: #9a9df0; color-scheme: dark; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15161c; --fg: #ececf0; --muted: #9a9ba6; --link: #9a9df0; --hover: #c9cbf0; --hl: #262852; --line: #2c2d36; --flag: #9a9df0; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #15161c; --fg: #ececf0; --muted: #9a9ba6; --link: #9a9df0; --hover: #c9cbf0; --hl: #262852; --line: #2c2d36; --flag: #9a9df0; color-scheme: dark; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 15.5px/1.6 "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif; }
 a { color: var(--link); text-decoration: none; } a:hover, a:focus { color: var(--hover); text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible { outline: 2px solid var(--hover); outline-offset: 2px; }
 .page { max-width: 800px; margin: 0 auto; padding: 24px 16px 40px; }
+.topbar { display: flex; justify-content: flex-end; }
 .name { text-align: center; font-size: 34px; margin: 18px 0 10px; font-weight: 400; letter-spacing: -0.01em; } .name b { font-weight: 800; }
 .intro { display: grid; grid-template-columns: 1fr 230px; gap: 28px; align-items: center; }
 .intro p { margin: 0 0 12px; }
@@ -53,15 +55,18 @@ h2 { font-size: 22px; font-weight: 700; margin: 34px 0 6px; letter-spacing: -0.0
 <link rel="canonical" href="https://dhaneswaramandrasa.vercel.app/">
 <meta property="og:url" content="https://dhaneswaramandrasa.vercel.app/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Dhaneswara Mandrasa", "url": "https://dhaneswaramandrasa.vercel.app/", "image": "https://dhaneswaramandrasa.vercel.app/photo.jpg", "jobTitle": "Senior Data Scientist & AI Engineer", "email": "mailto:dhaneswara.mandrasa@gmail.com", "affiliation": {"@type": "CollegeOrUniversity", "name": "Hiroshima University"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Institut Teknologi Bandung"}], "knowsAbout": ["Machine learning", "Causal inference", "Large language models", "Discrete choice modelling", "Geospatial data science"], "sameAs": ["https://www.linkedin.com/in/dhaneswaramandrasa", "https://github.com/dhaneswaramandrasa"]}</script>
+<script src="site.js"></script>
 </head>
 <body>
 <div class="page">
+  <div class="topbar"><span data-tools></span></div>
   <p class="name"><b>Dhaneswara</b> Mandrasa</p>
   <div class="intro">
     <div>
-      <p>I'm a data scientist and MPhil researcher in Smart Mobility at <a href="https://www.hiroshima-u.ac.jp/en">Hiroshima University</a>, in the Urban and Data Science Lab supervised by Prof. Tao Feng. My work is on pricing, risk and mobility: models that people actually use to make a decision.</p>
-      <p>Before that I spent eight years in industry. At <a href="project-segmentation.html">Eureka AI</a> in Abu Dhabi I worked with data from seven telecom operators across Asia and the UAE, segmenting 100M+ daily app users for clients such as Gojek, Grab and Tokopedia. Most recently I was Head of Data &amp; AI at Olsera.</p>
-      <p>I'm open to remote roles.</p>
+      <p>I'm Dhanes, a data scientist and MPhil researcher in Smart Mobility at <a href="https://www.hiroshima-u.ac.jp/en">Hiroshima University</a>, in the Urban and Data Science Lab under Prof. Tao Feng.</p>
+      <p>My research is about <b>LLMs as measurement instruments</b>. Much of what draws people to a neighbourhood, its shops, parks and how lively or safe it feels, lives in text that demand models cannot read: place names, map tags, descriptions. An LLM can turn that text into numbers, but those numbers shift with the wording of the prompt and the model you ask. So before any of them enter a model, I measure how much of each score is real signal and how much is noise, and keep only the features that hold up. Then I test whether they make a causal demand model better than one built without them. The test case is <a href="project-thesis.html">New York's January 2025 congestion toll</a>; a preliminary difference-in-differences shows ride-hail share fell 2.6 pp inside the tolled zone.</p>
+      <p>Before this I spent eight years in industry. At <a href="project-segmentation.html">Eureka AI</a> in Abu Dhabi I worked with data from seven telecom operators across Asia and the UAE: I segmented 100M+ daily app users for clients such as Gojek, Grab and Tokopedia, built an <a href="project-credit.html">alternative credit score</a> from telco behaviour, and led the market-intelligence products that grew from 5% to 70% of company revenue. Most recently I was Head of Data &amp; AI at <a href="project-olsera.html">Olsera</a>, building its data function from scratch.</p>
+      <p>I'm open to remote roles in consulting, team leadership and applied research.</p>
       <p class="mail"><a id="mail" href="mailto:dhaneswara.mandrasa@gmail.com?subject=Hello%20from%20your%20portfolio">dhaneswara.mandrasa@gmail.com</a> <button type="button" id="copy" aria-label="Copy email address">copy</button></p>
       <p class="links"><a href="cv.html">CV</a> (<a href="Dhaneswara_Mandrasa_CV.pdf">PDF</a>) &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/dhaneswaramandrasa">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/dhaneswaramandrasa">GitHub</a></p>
     </div>
